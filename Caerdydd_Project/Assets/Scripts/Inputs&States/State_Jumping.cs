@@ -11,7 +11,9 @@ public class State_Jumping : XDScript.IPlayerState
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && canGlide)
         {
             player.glidingState.canHover = false;
+            player.glidingState.timer = 0.0f;
             player.currentState = player.glidingState;
+            player.LaunchGivenAnimation(AnimationToLaunch.ANIM_GLIDE);
         }
     }
 
@@ -19,7 +21,7 @@ public class State_Jumping : XDScript.IPlayerState
     {
         XDScript.InputHandler._instance._Move.Execute(player.gameObject);
 
-        if (canGlide== false)
+        if (canGlide == false)
         {
             timer += Time.deltaTime;
             if (timer >= timeBeforeGlide)

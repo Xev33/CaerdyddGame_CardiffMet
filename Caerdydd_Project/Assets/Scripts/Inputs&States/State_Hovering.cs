@@ -14,6 +14,7 @@ public class State_Hovering : XDScript.IPlayerState
             player.currentState = player.glidingState;
             player.speed *= player.hoveringSpeedDivider;
             timer = 0.0f;
+            player.LaunchGivenAnimation(AnimationToLaunch.ANIM_GLIDE);
         }
     }
 
@@ -28,6 +29,7 @@ public class State_Hovering : XDScript.IPlayerState
             {
                 canGlide = true;
                 timer = 0.0f;
+                player.LaunchGivenAnimation(AnimationToLaunch.ANIM_JUMP);
             }
         }
 
@@ -36,6 +38,7 @@ public class State_Hovering : XDScript.IPlayerState
             player.speed *= player.hoveringSpeedDivider;
             timer = 0.0f;
             player.currentState = player.standingState;
+            player.LaunchGivenAnimation(AnimationToLaunch.ANIM_GROUNDED);
         }
     }
 }

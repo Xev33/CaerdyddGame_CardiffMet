@@ -6,6 +6,7 @@ public class State_Standing : XDScript.IPlayerState
     private bool isTimerOn = false;
     private float timer = 0.0f;
     private float timeToJump = 0.2f;
+
     public void HandleInput(Player player)
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0") && canJump)

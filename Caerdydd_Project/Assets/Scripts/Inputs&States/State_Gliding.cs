@@ -14,7 +14,9 @@ public class State_Gliding : XDScript.IPlayerState
             timer = 0.0f;
             player.currentState = player.hoveringState;
             player.hoveringState.canGlide = false;
+            player.hoveringState.timer = 0.0f;
             XDScript.InputHandler._instance._Hover.Execute(player.gameObject);
+            player.LaunchGivenAnimation(AnimationToLaunch.ANIM_HOVER);
         }
     }
 
@@ -36,6 +38,7 @@ public class State_Gliding : XDScript.IPlayerState
         {
             player.glidingState.timer = 0.0f;
             player.currentState = player.standingState;
+            player.LaunchGivenAnimation(AnimationToLaunch.ANIM_GROUNDED);
         }
     }
 
