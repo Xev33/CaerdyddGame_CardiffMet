@@ -10,10 +10,12 @@ public class Player : Singleton<Player>, ISubject
     private Subject subject = new Subject();
     private Rigidbody body;
     public float speed = 10.0f;
+    public float rotationSpeed = 10.0f;
+    private float lastDirection = 1f;
     [SerializeField] float jumpVelocity = 10.0f;
-    [SerializeField] private float lastDirection;
     [SerializeField] private float fallingGlidingSpeedDivider;
     [SerializeField] private float hoveringJumpVelocityDivider;
+    [SerializeField] private GameObject dragonMesh;
     public float hoveringSpeedDivider;
     private float distToGround = 1.0f;
 
@@ -22,8 +24,9 @@ public class Player : Singleton<Player>, ISubject
     [HideInInspector] public State_Jumping jumpState;
     [HideInInspector] public State_Gliding glidingState;
     [HideInInspector] public State_Hovering hoveringState;
-    /*[HideInInspector]*/ public CameraZone cameraZone;
+    [HideInInspector] public CameraZone cameraZone;
 
+    #region Unity functions
     void Start()
     {
         body = GetComponent<Rigidbody>();
@@ -45,6 +48,14 @@ public class Player : Singleton<Player>, ISubject
         currentState.StateUpdate(this);
     }
 
+    private void OnCollisionEnter(Collision col)
+    {
+        if (currentState == glidingState)
+            currentState = jumpState;
+    }
+
+    #endregion
+
     #region Fake Inpute
     public void BackInMenu()
     {
@@ -53,9 +64,12 @@ public class Player : Singleton<Player>, ISubject
 
     public void Move()
     {
-        if (Input.GetAxis("Horizontal") != 0.0f && currentState != glidingState)
-            lastDirection = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
+        float direction = Input.GetAxis("Horizontal");
+
+        if ((direction < -0.3f || direction > 0.3f) && currentState != glidingState)
+            lastDirection = direction;
+        body.velocity = new Vector2(direction * speed, body.velocity.y);
+        RotateMesh();
     }
 
     public void Jump()
@@ -69,6 +83,7 @@ public class Player : Singleton<Player>, ISubject
             body.velocity = new Vector2(1.0f * speed, (body.velocity.y / fallingGlidingSpeedDivider));
         else if (lastDirection < 0)
             body.velocity = new Vector2(-1.0f * speed, (body.velocity.y / fallingGlidingSpeedDivider));
+        RotateMesh();
     }
 
     public void Hover()
@@ -80,7 +95,27 @@ public class Player : Singleton<Player>, ISubject
 
     public bool IsGrounded()
     {
-        return Physics.Raycast(this.gameObject.transform.position, Vector3.down, (distToGround + 0.0f));
+        RaycastHit hit;
+
+        if (Physics.Raycast(this.gameObject.transform.position, Vector3.down, out hit, (distToGround + 0.0f)))
+        {
+            if (hit.collider.isTrigger)
+                return false;
+            else
+                return true;
+        }
+        else
+            return false;
+    }
+
+    private void RotateMesh()
+    {
+        Quaternion toRotation;
+        if (lastDirection < 0)
+            toRotation = Quaternion.LookRotation(new Vector3(-1, 0f, 0f));
+        else
+            toRotation = Quaternion.LookRotation(new Vector3(1f, 0f, 0f));
+        dragonMesh.transform.localRotation = Quaternion.RotateTowards(dragonMesh.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
 
     #region Subject initialization
