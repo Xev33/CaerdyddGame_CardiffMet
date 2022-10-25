@@ -19,6 +19,8 @@ namespace XDScript
         MISSION_STEP_COMPLETE,
         LEVELEVENT_OPEN_DOOR,
         LEVELEVENT_GET_KEY,
+        CHECKPOINT_REACHED,
+        PLAYER_DIES,
 
         // Achievmement event
         ACHIEVEMENT_QUITGAME,

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using XDScript;
 
 public enum AnimationToLaunch
@@ -10,7 +11,8 @@ public enum AnimationToLaunch
     ANIM_TAKE_HIT,
     ANIM_WALK,
     ANIM_GROUNDED,
-    ANIM_MOVE
+    ANIM_MOVE,
+    ANIM_DEATH
 }
 
 /// <summary>
@@ -20,19 +22,25 @@ public class Player : Singleton<Player>, ISubject
 {
     #region Variables
 
-    private InputHandler inputHandler;
-    private Subject subject = new Subject();
-    private Rigidbody body;
-    [SerializeField] private Animator anim;
     public float speed = 10.0f;
     public float rotationSpeed = 10.0f;
+    private Subject subject = new Subject();
+    private InputHandler inputHandler;
+    private Rigidbody body;
+    private Animator anim;
+    private bool isInvicible = false;
+
+    public int hp = 2;
+    private int idleState = 0;
     private float lastDirection = 1f;
     private float sleepTimer = 0f;
     private float direction = 0f;
-    private int idleState = 0;
     private float timeBeforIdle = 5f;
+
     [SerializeField] private GameObject dragonMesh;
-    [SerializeField] float jumpVelocity = 10.0f;
+    [SerializeField] private PlayerUI canvas;
+    [SerializeField] private float jumpVelocity = 10.0f;
+    [SerializeField] private float invincibilityTime = 5f;
     [SerializeField] private float fallingGlidingSpeedDivider;
     [SerializeField] private float hoveringJumpVelocityDivider;
     public float hoveringSpeedDivider;
@@ -43,6 +51,7 @@ public class Player : Singleton<Player>, ISubject
     [HideInInspector] public State_Jumping jumpState;
     [HideInInspector] public State_Gliding glidingState;
     [HideInInspector] public State_Hovering hoveringState;
+    [HideInInspector] public State_Disable disableState;
     [HideInInspector] public CameraZone cameraZone;
 
     #endregion
@@ -57,7 +66,9 @@ public class Player : Singleton<Player>, ISubject
         jumpState = new State_Jumping();
         glidingState = new State_Gliding();
         hoveringState = new State_Hovering();
+        disableState = new State_Disable();
         currentState = standingState;
+        StartCoroutine(OpenUI());
 
         AbstractObserver[] obsFounded = FindObjectsOfType<AbstractObserver>();
         for (int i = 0; i < obsFounded.Length; i++)
@@ -66,6 +77,12 @@ public class Player : Singleton<Player>, ISubject
 
     void Update()
     {
+        if (hp <= 0)
+            return;
+        if (Input.GetKeyDown(KeyCode.H))
+            TakeHit(1);
+        if (Input.GetKeyDown(KeyCode.K))
+            Heal();
         currentState.HandleInput(this);
         currentState.StateUpdate(this);
 
@@ -143,7 +160,78 @@ public class Player : Singleton<Player>, ISubject
 
     #endregion
 
+    #region Gameplay
+
+    public void TakeHit(int damage)
+    {
+        if (isInvicible == true || damage != 1)
+            return;
+
+        Camera.main.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
+        isInvicible = true;
+        hp -= damage;
+        canvas.TakeDamage(hp);
+        if (hp <= 0)
+        {
+            currentState = disableState;
+            StartCoroutine(PlayerDies());
+        }
+        else
+            StartCoroutine(GetInvicibleFrame());
+    }
+
+    IEnumerator PlayerDies()
+    {
+        body.velocity = new Vector2(0, body.velocity.y);
+        currentState = disableState;
+        LaunchGivenAnimation(AnimationToLaunch.ANIM_DEATH);
+        yield return new WaitForSeconds(2f);
+        canvas.CloseBlackGround();
+        yield return new WaitForSeconds(1f);
+        NotifyObservers(this.gameObject, E_Event.PLAYER_DIES);
+    }
+
+    public void Heal()
+    {
+        if (hp == 1)
+        {
+            hp++;
+            canvas.GetHealed(hp);
+        }
+    }
+
+    #endregion
+
     #region Utils
+
+    IEnumerator OpenUI()
+    {
+        yield return new WaitForSeconds(1f);
+        canvas.GetHealed(1);
+        canvas.GetHealed(2);
+    }
+
+    IEnumerator GetInvicibleFrame()
+    {
+        float timer = 0f;
+        float lastTime = 0.2f;
+        SkinnedMeshRenderer mesh = dragonMesh.GetComponentInChildren<SkinnedMeshRenderer>();
+
+        while (timer < invincibilityTime)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > lastTime)
+            {
+                lastTime += 0.2f;
+                mesh.enabled = !mesh.enabled;
+            }
+            yield return null;
+        }
+        mesh.enabled = true;
+        isInvicible = false;
+        yield return null;
+    }
 
     public bool IsGrounded()
     {
@@ -197,6 +285,9 @@ public class Player : Singleton<Player>, ISubject
                 break;
             case AnimationToLaunch.ANIM_MOVE:
                 anim.SetFloat("Move", direction);
+                break;
+            case AnimationToLaunch.ANIM_DEATH:
+                anim.SetTrigger("DeathTrigger");
                 break;
             default:
                 break;

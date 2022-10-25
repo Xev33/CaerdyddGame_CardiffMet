@@ -20,7 +20,8 @@ public class State_Standing : XDScript.IPlayerState
 
     public void StateUpdate(Player player)
     {
-        XDScript.InputHandler._instance._Move.Execute(player.gameObject);
+        if (player != null && XDScript.InputHandler._instance != null && XDScript.InputHandler._instance._Move != null)
+            XDScript.InputHandler._instance._Move.Execute(player.gameObject);
 
         if (isTimerOn == true)
         {
