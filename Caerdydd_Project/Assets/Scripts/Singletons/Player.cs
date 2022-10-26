@@ -24,6 +24,8 @@ public class Player : Singleton<Player>, ISubject
 
     public float speed = 10.0f;
     public float rotationSpeed = 10.0f;
+    public float hoveringSpeedDivider;
+    public GameObject selfCamAnchor;
     private Subject subject = new Subject();
     private InputHandler inputHandler;
     private Rigidbody body;
@@ -36,6 +38,7 @@ public class Player : Singleton<Player>, ISubject
     private float sleepTimer = 0f;
     private float direction = 0f;
     private float timeBeforIdle = 5f;
+    private float distToGround = 1.0f;
 
     [SerializeField] private GameObject dragonMesh;
     [SerializeField] private PlayerUI canvas;
@@ -43,8 +46,6 @@ public class Player : Singleton<Player>, ISubject
     [SerializeField] private float invincibilityTime = 5f;
     [SerializeField] private float fallingGlidingSpeed;
     [SerializeField] private float hoveringJumpVelocityDivider;
-    public float hoveringSpeedDivider;
-    private float distToGround = 1.0f;
 
     public IPlayerState currentState;
     [HideInInspector] public State_Standing standingState;
@@ -167,7 +168,7 @@ public class Player : Singleton<Player>, ISubject
         if (isInvicible == true || damage != 1)
             return;
 
-        Camera.main.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
+        selfCamAnchor.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
         isInvicible = true;
         hp -= damage;
         canvas.TakeDamage(hp);

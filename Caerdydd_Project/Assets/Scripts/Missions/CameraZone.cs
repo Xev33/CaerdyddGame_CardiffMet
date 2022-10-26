@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class CameraZone : MonoBehaviour
 {
-    private Camera cam;
+    private GameObject cam;
     [SerializeField] private float movementDuration;
     public bool hasAnchor;
     [HideInInspector] public GameObject anchor;
@@ -15,9 +15,9 @@ public class CameraZone : MonoBehaviour
     [HideInInspector] public Vector3 newPosition;
     [HideInInspector] public Quaternion newRotation;
 
-    private void Awake()
+    private void Start()
     {
-        cam = Camera.main;
+        cam = Player._instance.selfCamAnchor;
         newRotation.x = newRotation.x / 100;
         newRotation.y = newRotation.y / 100;
         newRotation.z = newRotation.z / 100;
@@ -73,7 +73,7 @@ public class CameraZone : MonoBehaviour
             normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue);
 
             cam.transform.localPosition = Vector3.Lerp(initialPos, newPosition, normalizedValue);
-            cam.transform.localRotation = Quaternion.Lerp(initialRot, newRotation, normalizedValue);
+            cam.transform.localRotation = Quaternion.Lerp(initialRot, anchor.transform.localRotation, normalizedValue);
 
             yield return null;
         }
