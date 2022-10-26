@@ -41,7 +41,7 @@ public class Player : Singleton<Player>, ISubject
     [SerializeField] private PlayerUI canvas;
     [SerializeField] private float jumpVelocity = 10.0f;
     [SerializeField] private float invincibilityTime = 5f;
-    [SerializeField] private float fallingGlidingSpeedDivider;
+    [SerializeField] private float fallingGlidingSpeed;
     [SerializeField] private float hoveringJumpVelocityDivider;
     public float hoveringSpeedDivider;
     private float distToGround = 1.0f;
@@ -104,7 +104,7 @@ public class Player : Singleton<Player>, ISubject
         if (currentState == glidingState)
         {
             currentState = jumpState;
-            LaunchGivenAnimation(AnimationToLaunch.ANIM_HOVER);
+            LaunchGivenAnimation(AnimationToLaunch.ANIM_HOVER); // This anim MUST be hover or it will stay as gliding anim
         }
     }
 
@@ -146,9 +146,9 @@ public class Player : Singleton<Player>, ISubject
     public void Glide()
     {
         if (lastDirection > 0)
-            body.velocity = new Vector2(1.0f * speed, (body.velocity.y / fallingGlidingSpeedDivider));
+            body.velocity = new Vector2(1.0f * speed, ((-1) * (fallingGlidingSpeed / 10)));
         else if (lastDirection < 0)
-            body.velocity = new Vector2(-1.0f * speed, (body.velocity.y / fallingGlidingSpeedDivider));
+            body.velocity = new Vector2(-1.0f * speed, ((-1) * (fallingGlidingSpeed / 10)));
         RotateMesh();
     }
 
