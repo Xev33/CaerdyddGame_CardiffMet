@@ -20,17 +20,30 @@ public class CheckPoint : MonoBehaviour, ISubject
     {
         if (col.tag == "Player" && isOn == false)
         {
-            NotifyObservers(this.gameObject, E_Event.CHECKPOINT_REACHED);
-            isOn = true;
-            this.gameObject.GetComponent<Renderer>().material = materialOn;
-            Debug.Log(this.gameObject.GetComponent<Renderer>().material);
+            TurnOn();
         }
+    }
+
+    #endregion
+
+    #region CheckPoint Functions
+
+    public void TurnOn()
+    {
+        NotifyObservers(this.gameObject, E_Event.CHECKPOINT_REACHED);
+        isOn = true;
+        Debug.Log(this.gameObject.GetComponent<Renderer>().material);
+
+        // Graphic aspect
+        this.gameObject.GetComponent<Renderer>().material = materialOn;
     }
 
     public void TurnOff()
     {
-        this.gameObject.GetComponent<Renderer>().material = materialOff;
         isOn = false;
+
+        // Graphic aspect
+        this.gameObject.GetComponent<Renderer>().material = materialOff;
     }
 
     #endregion

@@ -165,13 +165,23 @@ public class Player : Singleton<Player>, ISubject
 
     public void TakeHit(int damage)
     {
-        if (isInvicible == true || damage != 1)
+        if (isInvicible == true && damage == 1)
             return;
 
         Camera.main.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
         isInvicible = true;
-        hp -= damage;
-        canvas.TakeDamage(hp);
+        if (hp == 2 && damage == 2)
+        {
+            hp -= damage;
+            canvas.TakeDamage(1);
+            canvas.TakeDamage(hp);
+
+        } else
+        {
+            hp -= damage;
+            canvas.TakeDamage(hp);
+        }
+
         if (hp <= 0)
         {
             currentState = disableState;

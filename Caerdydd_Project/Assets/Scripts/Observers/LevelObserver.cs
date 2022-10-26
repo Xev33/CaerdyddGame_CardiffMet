@@ -12,7 +12,6 @@ namespace XDScript
         void Start()
         {
             currentCheckpoint = PlayerPrefs.GetInt("lastCheckPoint", 0);
-            Debug.Log("First CHECKPOINT = " + currentCheckpoint);
             if (checkPoints.Length > 0)
                 Player._instance.gameObject.transform.position = checkPoints[currentCheckpoint].transform.position;
         }
@@ -60,9 +59,6 @@ namespace XDScript
         private void ReloadScene()
         {
             PlayerPrefs.SetInt("lastCheckPoint", currentCheckpoint);
-            Debug.Log("LAST CHECKPOINT = " + currentCheckpoint);
-            PlayerPrefs.GetInt("lastCheckPoint", currentCheckpoint);
-            Debug.Log("LAST ENCORE = " + currentCheckpoint);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
