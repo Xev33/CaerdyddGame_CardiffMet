@@ -31,6 +31,7 @@ public class Player : Singleton<Player>, ISubject
     private Rigidbody body;
     private Animator anim;
     private bool isInvicible = false;
+    private bool shouldNotMove = false;
 
     public int hp = 2;
     private int idleState = 0;
@@ -124,7 +125,11 @@ public class Player : Singleton<Player>, ISubject
             sleepTimer = 0f;
             lastDirection = direction;
         }
-        body.velocity = new Vector2(direction * speed, body.velocity.y);
+        if (shouldNotMove)
+            body.velocity = new Vector2(direction, 0f);
+        else
+            body.velocity = new Vector2(direction * speed, body.velocity.y);
+
         if (currentState == standingState)
         {
             LaunchGivenAnimation(AnimationToLaunch.ANIM_IDLE);
@@ -165,7 +170,7 @@ public class Player : Singleton<Player>, ISubject
 
     public void TakeHit(int damage)
     {
-        if (isInvicible == true && damage == 1)
+        if ((isInvicible == true && damage == 1) || hp <= 0)
             return;
 
         Camera.main.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
@@ -226,12 +231,17 @@ public class Player : Singleton<Player>, ISubject
     IEnumerator GetInvicibleFrame()
     {
         float timer = 0f;
+        float timerNotMove = 0f;
         float lastTime = 0.2f;
         SkinnedMeshRenderer mesh = dragonMesh.GetComponentInChildren<SkinnedMeshRenderer>();
 
+        shouldNotMove = true;
         while (timer < invincibilityTime)
         {
             timer += Time.deltaTime;
+            timerNotMove += Time.deltaTime;
+            if (timerNotMove >= 0.5)
+                shouldNotMove = false;
 
             if (timer > lastTime)
             {

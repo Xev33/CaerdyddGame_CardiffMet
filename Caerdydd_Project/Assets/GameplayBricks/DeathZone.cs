@@ -6,7 +6,6 @@ public class DeathZone : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            Debug.Log("WALLAH");
             Player._instance.TakeHit(2);
         }
     }
