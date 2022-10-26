@@ -40,6 +40,7 @@ public class Player : Singleton<Player>, ISubject
     private float direction = 0f;
     private float timeBeforIdle = 5f;
     private float distToGround = 1.0f;
+    public int collectibleNbr = 0;
 
     [SerializeField] private GameObject dragonMesh;
     [SerializeField] private PlayerUI canvas;
@@ -70,6 +71,8 @@ public class Player : Singleton<Player>, ISubject
         hoveringState = new State_Hovering();
         disableState = new State_Disable();
         currentState = standingState;
+        collectibleNbr = PlayerPrefs.GetInt("collectibleNumber", 0);
+
         StartCoroutine(OpenUI());
 
         AbstractObserver[] obsFounded = FindObjectsOfType<AbstractObserver>();
@@ -217,6 +220,12 @@ public class Player : Singleton<Player>, ISubject
         }
     }
 
+    public void CollectPetal()
+    {
+        collectibleNbr++;
+        canvas.CollectPetal();
+    }
+
     #endregion
 
     #region Utils
@@ -226,6 +235,7 @@ public class Player : Singleton<Player>, ISubject
         yield return new WaitForSeconds(1f);
         canvas.GetHealed(1);
         canvas.GetHealed(2);
+        canvas.UpdateUI();
     }
 
     IEnumerator GetInvicibleFrame()

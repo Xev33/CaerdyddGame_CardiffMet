@@ -59,6 +59,7 @@ namespace XDScript
         private void ReloadScene()
         {
             PlayerPrefs.SetInt("lastCheckPoint", currentCheckpoint);
+            PlayerPrefs.SetInt("collectibleNumber", Player._instance.collectibleNbr);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
