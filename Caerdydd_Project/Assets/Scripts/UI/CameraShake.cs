@@ -26,32 +26,32 @@ public class CameraShake : MonoBehaviour
 
     void OnEnable()
     {
-        initialPosition = transform.localPosition;
+        initialPosition = transform.position;
     }
 
     void Update()
     {
+        initialPosition = transform.position;
         if (shakeDuration > 0)
         {
-            transform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
+            transform.position = initialPosition + Random.insideUnitSphere * shakeMagnitude;
 
             shakeDuration -= Time.deltaTime * dampingSpeed;
         }
         else
         {
             shakeDuration = 0f;
-            transform.localPosition = initialPosition;
+            transform.position = initialPosition;
         }
     }
 
     public void TriggerShake(float duration)
     {
-        initialPosition = transform.localPosition;
         shakeDuration = duration;
     }
     
     public void UpdateInitPos()
     {
-        initialPosition = transform.localPosition;
+        initialPosition = transform.position;
     }
 }

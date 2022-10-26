@@ -8,20 +8,18 @@ using UnityEditor;
 public class CameraZone : MonoBehaviour
 {
     private GameObject cam;
+    private CameraFollow camera;
     [SerializeField] private float movementDuration;
     public bool hasAnchor;
+    [SerializeField] private float newCamTimeOffSet = 0.2f;
     [HideInInspector] public GameObject anchor;
     [HideInInspector] public bool shouldLookAtPlayer;
     [HideInInspector] public Vector3 newPosition;
-    [HideInInspector] public Quaternion newRotation;
 
     private void Start()
     {
         cam = Player._instance.selfCamAnchor;
-        newRotation.x = newRotation.x / 100;
-        newRotation.y = newRotation.y / 100;
-        newRotation.z = newRotation.z / 100;
-        //newRotation.w = cam.transform.rotation.w;
+        camera = Camera.main.gameObject.GetComponent<CameraFollow>();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -43,6 +41,7 @@ public class CameraZone : MonoBehaviour
         Vector3 initialPos = cam.gameObject.transform.position;
         Quaternion initialRot = cam.gameObject.transform.rotation;
 
+        camera.timeOffSet = newCamTimeOffSet;
         cam.gameObject.transform.parent = null;
         while (timer < movementDuration && Player._instance.cameraZone == this)
         {
@@ -55,6 +54,9 @@ public class CameraZone : MonoBehaviour
 
             yield return null;
         }
+
+        cam.transform.position = anchor.transform.position;
+        cam.transform.rotation = anchor.transform.rotation;
         yield return null;
     }
 
@@ -66,7 +68,8 @@ public class CameraZone : MonoBehaviour
         Vector3 initialPos = cam.gameObject.transform.localPosition;
         Quaternion initialRot = cam.gameObject.transform.localRotation;
 
-        while (timer < movementDuration && Player._instance.cameraZone == this)
+        camera.timeOffSet = newCamTimeOffSet;
+        while (timer < movementDuration && Player._instance.cameraZone == this) 
         {
             timer += Time.deltaTime;
             normalizedValue = timer / movementDuration;
@@ -77,6 +80,9 @@ public class CameraZone : MonoBehaviour
 
             yield return null;
         }
+
+        cam.transform.localPosition = newPosition;
+        cam.transform.localRotation = anchor.transform.localRotation;
         yield return null;
     }
 }
@@ -90,7 +96,6 @@ public class CameraZoneEditor : Editor
     {
         DrawDefaultInspector(); // for other non-HideInInspector fields
         CameraZone myCamera = target as CameraZone;
-        Vector4 vec4 = QuaternionToVector4(myCamera.newRotation);
 
 
         // Enable the custom vector 2 in editor if user choose "Custom" as movement type
@@ -102,22 +107,11 @@ public class CameraZoneEditor : Editor
         else
         {
             myCamera.newPosition = EditorGUILayout.Vector3Field("New camera position", myCamera.newPosition);
-            myCamera.newRotation = Vector4ToQuaternion(EditorGUILayout.Vector4Field("New camera rotation", vec4));
         }
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(target, "Changed Area Of Effect");
         }
-    }
-
-    Quaternion Vector4ToQuaternion(Vector4 v4)
-    {
-        return new Quaternion(v4.x, v4.y, v4.z, v4.w);
-    }
-
-    Vector4 QuaternionToVector4(Quaternion q)
-    {
-        return new Vector4(q.x, q.y, q.z, q.w);
     }
 }
 #endif

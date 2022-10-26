@@ -168,7 +168,7 @@ public class Player : Singleton<Player>, ISubject
         if (isInvicible == true || damage != 1)
             return;
 
-        selfCamAnchor.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
+        Camera.main.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
         isInvicible = true;
         hp -= damage;
         canvas.TakeDamage(hp);
