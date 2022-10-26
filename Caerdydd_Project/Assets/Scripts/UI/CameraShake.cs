@@ -24,11 +24,6 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        initialPosition = transform.position;
-    }
-
     void Update()
     {
         initialPosition = transform.position;
@@ -48,10 +43,5 @@ public class CameraShake : MonoBehaviour
     public void TriggerShake(float duration)
     {
         shakeDuration = duration;
-    }
-    
-    public void UpdateInitPos()
-    {
-        initialPosition = transform.position;
     }
 }

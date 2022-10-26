@@ -11,8 +11,10 @@ namespace XDScript
 
         void Start()
         {
-            checkPoints = GameObject.FindGameObjectsWithTag("CheckPoint");
-            Player._instance.gameObject.transform.position = checkPoints[currentCheckpoint].transform.position;
+            currentCheckpoint = PlayerPrefs.GetInt("lastCheckPoint", 0);
+            Debug.Log("First CHECKPOINT = " + currentCheckpoint);
+            if (checkPoints.Length > 0)
+                Player._instance.gameObject.transform.position = checkPoints[currentCheckpoint].transform.position;
         }
     
         public override void OnNotify(GameObject entity, E_Event eventToTrigger)
@@ -42,7 +44,7 @@ namespace XDScript
         private void DisableAllCheckPoints()
         {
             for (int i = 0; i < checkPoints.Length; i++)
-                checkPoints[i].GetComponent<CheckPoint>().isOn = false;
+                checkPoints[i].GetComponent<CheckPoint>().TurnOff();
         }
 
         private int FindCheckPointIndex(ref GameObject entity)
@@ -57,6 +59,10 @@ namespace XDScript
 
         private void ReloadScene()
         {
+            PlayerPrefs.SetInt("lastCheckPoint", currentCheckpoint);
+            Debug.Log("LAST CHECKPOINT = " + currentCheckpoint);
+            PlayerPrefs.GetInt("lastCheckPoint", currentCheckpoint);
+            Debug.Log("LAST ENCORE = " + currentCheckpoint);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

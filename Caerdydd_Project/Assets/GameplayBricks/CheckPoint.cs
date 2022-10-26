@@ -4,6 +4,8 @@ using XDScript;
 public class CheckPoint : MonoBehaviour, ISubject
 {
     private Subject subject = new Subject();
+    [SerializeField] private Material materialOff;
+    [SerializeField] private Material materialOn;
     public bool isOn = false;
 
     #region Unity functions
@@ -20,8 +22,17 @@ public class CheckPoint : MonoBehaviour, ISubject
         {
             NotifyObservers(this.gameObject, E_Event.CHECKPOINT_REACHED);
             isOn = true;
+            this.gameObject.GetComponent<Renderer>().material = materialOn;
+            Debug.Log(this.gameObject.GetComponent<Renderer>().material);
         }
     }
+
+    public void TurnOff()
+    {
+        this.gameObject.GetComponent<Renderer>().material = materialOff;
+        isOn = false;
+    }
+
     #endregion
 
     #region Subject initialization
