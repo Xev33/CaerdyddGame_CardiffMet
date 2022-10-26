@@ -184,6 +184,7 @@ public class Player : Singleton<Player>, ISubject
     IEnumerator PlayerDies()
     {
         body.velocity = new Vector2(0, body.velocity.y);
+        selfCamAnchor.transform.parent = null;
         currentState = disableState;
         LaunchGivenAnimation(AnimationToLaunch.ANIM_DEATH);
         yield return new WaitForSeconds(2f);
