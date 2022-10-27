@@ -8,20 +8,19 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private PopUpBehavior hp1;
     [SerializeField] private PopUpBehavior hp2;
     [SerializeField] private Sprite[] petals = new Sprite[7];
-    [SerializeField] private PopUpBehavior daffodilCollectibles;
+    [SerializeField] private Image daffodilSprite;
     [SerializeField] private PopUpBehavior blackGround;
     [SerializeField] private Animator anim;
     [SerializeField] private float collectibleCountDuration = 3f;
     [SerializeField] private int internPetal = 0;
     [SerializeField] private TMPro.TextMeshProUGUI petalNbr;
-    private Image image;
     private float timer = 0f;
-    private bool isCounterOpen = false;
+    private bool isCounterOpen = true;
 
     private void Awake()
     {
-        image = daffodilCollectibles.gameObject.GetComponent<Image>();
-        
+
+        anim.SetTrigger("Open");
     }
 
     private void Update()
@@ -31,7 +30,7 @@ public class PlayerUI : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > collectibleCountDuration)
             {
-                daffodilCollectibles.ClosePopUp();
+                anim.SetTrigger("Close");
                 timer = 0.0f;
                 isCounterOpen = false;
             }
@@ -71,7 +70,7 @@ public class PlayerUI : MonoBehaviour
         if (isCounterOpen == false)
         {
             isCounterOpen = true;
-            daffodilCollectibles.OpenPopUp();
+            anim.SetTrigger("Open");
         }
         timer = 0.0f;
         internPetal++;
@@ -84,7 +83,7 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        image.sprite = petals[internPetal];
+        daffodilSprite.sprite = petals[internPetal];
         petalNbr.text = Player._instance.collectibleNbr.ToString();
     }
 

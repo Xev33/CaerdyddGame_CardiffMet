@@ -571,10 +571,10 @@ MonoBehaviour:
   - {fileID: -762336074, guid: a7450a6161b6ba24cbcad1f499fd5a5f, type: 3}
   - {fileID: -933109815, guid: a7450a6161b6ba24cbcad1f499fd5a5f, type: 3}
   - {fileID: -1395103130, guid: a7450a6161b6ba24cbcad1f499fd5a5f, type: 3}
-  daffodilCollectibles: {fileID: 647628613335230068}
+  daffodilSprite: {fileID: 461363552754485530}
   blackGround: {fileID: 6748402801933708828}
   anim: {fileID: 6786348934974584074}
-  collectibleCountDuration: 1
+  collectibleCountDuration: 5
   internPetal: 0
   petalNbr: {fileID: 1609089958275752538}
 --- !u!1 &7411146902274739261
@@ -588,7 +588,6 @@ GameObject:
   - component: {fileID: 7066036884383034113}
   - component: {fileID: 8390708782735200505}
   - component: {fileID: 461363552754485530}
-  - component: {fileID: 647628613335230068}
   - component: {fileID: 6786348934974584074}
   m_Layer: 5
   m_Name: Collectible
@@ -656,27 +655,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &647628613335230068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7411146902274739261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5403bf19bc83a4db79ddf7b7609aec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_timeOfTravelingOpen: 0.5
-  m_timeOfTravelingClose: 0.5
-  m_shouldStartOpen: 0
-  m_shouldGrowUp: 1
-  m_shouldShrink: 1
-  startPosition: 6
-  endPosition: 6
-  m_customStartingPos: {fileID: 0}
-  m_customEndPos: {fileID: 6748402802267957872}
 --- !u!95 &6786348934974584074
 Animator:
   serializedVersion: 4
