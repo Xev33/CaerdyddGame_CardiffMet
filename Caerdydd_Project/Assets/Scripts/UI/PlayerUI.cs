@@ -67,14 +67,18 @@ public class PlayerUI : MonoBehaviour
 
     public void CollectPetal()
     {
+        timer = 0.0f;
+        internPetal++;
+        UpdateUI();
         if (isCounterOpen == false)
         {
             isCounterOpen = true;
             anim.SetTrigger("Open");
+            if (internPetal >= 6)
+                StartCoroutine(CompleteFlower());
+            else
+                return;
         }
-        timer = 0.0f;
-        internPetal++;
-        UpdateUI();
         if (internPetal >= 6)
             StartCoroutine(CompleteFlower());
         else

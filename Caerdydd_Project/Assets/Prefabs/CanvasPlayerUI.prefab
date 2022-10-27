@@ -574,7 +574,7 @@ MonoBehaviour:
   daffodilSprite: {fileID: 461363552754485530}
   blackGround: {fileID: 6748402801933708828}
   anim: {fileID: 6786348934974584074}
-  collectibleCountDuration: 5
+  collectibleCountDuration: 3
   internPetal: 0
   petalNbr: {fileID: 1609089958275752538}
 --- !u!1 &7411146902274739261

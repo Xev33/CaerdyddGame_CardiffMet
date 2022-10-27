@@ -5,15 +5,17 @@ public class State_Standing : XDScript.IPlayerState
     private bool canJump = true;
     private bool isTimerOn = false;
     private float timer = 0.0f;
-    private float timeToJump = 0.2f;
+    private float timeToJump = 0.3f;
 
     public void HandleInput(Player player)
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0") && canJump)
         {
+            canJump = false;
+            timer = 0.0f;
+            player.currentState = player.jumpState;
             player.jumpState.timer = 0.0f;
             player.jumpState.canGlide = false;
-            player.currentState = player.jumpState;
             XDScript.InputHandler._instance._Jump.Execute(player.gameObject);
         }
     }

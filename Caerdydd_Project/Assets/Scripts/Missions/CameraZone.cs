@@ -64,12 +64,12 @@ public class CameraZone : MonoBehaviour
     {
         float timer = 0f;
         float normalizedValue = 0f;
+        if (Player._instance.hp > 0)
+            cam.transform.parent = Player._instance.gameObject.transform;
         Vector3 initialPos = cam.gameObject.transform.localPosition;
         Quaternion initialRot = cam.gameObject.transform.localRotation;
         camera.timeOffSet = newCamTimeOffSet;
 
-        if (Player._instance.hp > 0)
-            cam.transform.parent = Player._instance.gameObject.transform;
         while (timer < movementDuration && Player._instance.cameraZone == this) 
         {
             timer += Time.deltaTime;

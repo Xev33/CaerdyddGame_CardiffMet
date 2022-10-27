@@ -16,6 +16,6 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         this.gameObject.transform.position = Vector3.SmoothDamp(this.transform.position, objectToFollow.transform.position, ref velocity, timeOffSet);
-        this.gameObject.transform.rotation = Quaternion.Slerp(this.transform.rotation, objectToFollow.transform.rotation, timeOffSet);
+        this.gameObject.transform.rotation = objectToFollow.transform.rotation;
     }
 }

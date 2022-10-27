@@ -12,7 +12,8 @@ public enum AnimationToLaunch
     ANIM_WALK,
     ANIM_GROUNDED,
     ANIM_MOVE,
-    ANIM_DEATH
+    ANIM_DEATH,
+    ANIM_SPIN
 }
 
 /// <summary>
@@ -25,13 +26,16 @@ public class Player : Singleton<Player>, ISubject
     public float speed = 10.0f;
     public float rotationSpeed = 10.0f;
     public float hoveringSpeedDivider;
+    [HideInInspector] public float maxSpeed;
     public GameObject selfCamAnchor;
+    private float rot = 10.0f; // The rotation to add for the spin move jump
     private Subject subject = new Subject();
     private InputHandler inputHandler;
     private Rigidbody body;
     private Animator anim;
     private bool isInvicible = false;
     private bool shouldNotMove = false;
+    [HideInInspector] public bool isSpinning = false;
 
     public int hp = 2;
     private int idleState = 0;
@@ -62,6 +66,7 @@ public class Player : Singleton<Player>, ISubject
     #region Unity functions
     void Start()
     {
+        maxSpeed = speed;
         body = GetComponent<Rigidbody>();
         anim = dragonMesh.gameObject.GetComponent<Animator>();
         inputHandler = this.gameObject.AddComponent<InputHandler>();
@@ -102,6 +107,12 @@ public class Player : Singleton<Player>, ISubject
             idleState = 2;
             LaunchGivenAnimation(AnimationToLaunch.ANIM_IDLE);
         }
+        if (currentState == jumpState)
+            anim.SetTrigger("JumpTrigger");
+        else if (currentState == glidingState)
+            anim.SetTrigger("GlideTrigger");
+        else if (currentState == hoveringState)
+            anim.SetTrigger("LandTrigger");
     }
 
     private void OnCollisionEnter(Collision col)
@@ -109,7 +120,6 @@ public class Player : Singleton<Player>, ISubject
         if (currentState == glidingState)
         {
             currentState = jumpState;
-            LaunchGivenAnimation(AnimationToLaunch.ANIM_HOVER); // This anim MUST be hover or it will stay as gliding anim
         }
     }
 
@@ -139,21 +149,40 @@ public class Player : Singleton<Player>, ISubject
             LaunchGivenAnimation(AnimationToLaunch.ANIM_GROUNDED);
             LaunchGivenAnimation(AnimationToLaunch.ANIM_WALK);
         }
-        else if (currentState == jumpState)
-            LaunchGivenAnimation(AnimationToLaunch.ANIM_JUMP);
         RotateMesh();
     }
 
     public void Jump()
     {
-        LaunchGivenAnimation(AnimationToLaunch.ANIM_JUMP);
+        if (isSpinning == true)
+            return;
+        jumpState.timer = 0.0f;
+        jumpState.canGlide = false;
+        currentState = jumpState;
         body.velocity = new Vector2(body.velocity.x, jumpVelocity);
         sleepTimer = 0f;
         idleState = 0;
     }
 
+    public void SpinJump(float bumpVelocity)
+    {
+        LaunchGivenAnimation(AnimationToLaunch.ANIM_SPIN);
+        speed = maxSpeed;
+        jumpState.timer = 0.0f;
+        jumpState.canGlide = false;
+        currentState = jumpState;
+        body.velocity = new Vector2(body.velocity.x, bumpVelocity);
+        sleepTimer = 0f;
+        idleState = 0;
+        if (isSpinning == true)
+            StopCoroutine(SpinPlayer());
+        StartCoroutine(SpinPlayer());
+    }
+
     public void Glide()
     {
+        if (isSpinning == true)
+            return;
         if (lastDirection > 0)
             body.velocity = new Vector2(1.0f * speed, ((-1) * (fallingGlidingSpeed / 10)));
         else if (lastDirection < 0)
@@ -163,7 +192,6 @@ public class Player : Singleton<Player>, ISubject
 
     public void Hover()
     {
-        LaunchGivenAnimation(AnimationToLaunch.ANIM_HOVER);
         body.velocity = new Vector2(body.velocity.x, (jumpVelocity / hoveringJumpVelocityDivider));
     }
 
@@ -268,26 +296,55 @@ public class Player : Singleton<Player>, ISubject
     public bool IsGrounded()
     {
         RaycastHit hit;
+        Vector3 pos = this.gameObject.transform.position;
 
-        if (Physics.Raycast(this.gameObject.transform.position, Vector3.down, out hit, (distToGround + 0.0f)))
-        {
-            if (hit.collider.isTrigger)
-                return false;
-            else
+        Debug.DrawRay(pos, Vector3.down, Color.green);
+        Debug.DrawLine(new Vector3(pos.x - 0.5f, pos.y, pos.z), new Vector3(pos.x-0.5f, pos.y - distToGround, pos.z), Color.green);
+        Debug.DrawLine(new Vector3(pos.x + 0.5f, pos.y, pos.z), new Vector3(pos.x+0.5f, pos.y - distToGround, pos.z), Color.green);
+
+        if (Physics.Raycast(pos, Vector3.down, out hit, (distToGround)))
+            if (hit.collider.isTrigger == false)
                 return true;
-        }
-        else
-            return false;
+        if (Physics.Raycast(new Vector3(pos.x - 1f, pos.y, pos.z), Vector3.down, out hit, (0)))
+            if (hit.collider.isTrigger == false)
+                return true;
+        if (Physics.Raycast(new Vector3(pos.x + 1f, pos.y, pos.z), Vector3.down, out hit, (0)))
+            if (hit.collider.isTrigger == false)
+                return true;
+        return false;
     }
 
     private void RotateMesh()
     {
         Quaternion toRotation;
         if (lastDirection < 0)
-            toRotation = Quaternion.LookRotation(new Vector3(-1, 0f, 0f));
+            toRotation = Quaternion.LookRotation(new Vector3(-0.5f, 0f, 0f));
         else
-            toRotation = Quaternion.LookRotation(new Vector3(1f, 0f, 0f));
+            toRotation = Quaternion.LookRotation(new Vector3(0.5f, 0f, 0f));
         dragonMesh.transform.localRotation = Quaternion.RotateTowards(dragonMesh.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+    private IEnumerator SpinPlayer()
+    {
+        isSpinning = true;
+        float timer = 0.0f;
+        float duration = 0.5f;
+        float normalizedValue = 0.0f;
+        Vector3 v1 = new Vector3(0, 0, 15);
+        Vector3 v2 = new Vector3(0, 0, rot);
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            normalizedValue = timer / duration; // We normalize our time for the lerp
+            normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue); // Calcul for a smooth lerp
+
+            dragonMesh.transform.Rotate(Vector3.Lerp(v1, v2, normalizedValue));
+
+            yield return null;
+        }
+        dragonMesh.transform.Rotate(v1);
+        isSpinning = false;
+        yield return null;
     }
 
     public void LaunchGivenAnimation(AnimationToLaunch animToLaunch)
@@ -320,6 +377,9 @@ public class Player : Singleton<Player>, ISubject
                 break;
             case AnimationToLaunch.ANIM_DEATH:
                 anim.SetTrigger("DeathTrigger");
+                break;
+            case AnimationToLaunch.ANIM_SPIN:
+                anim.SetTrigger("SpinJump");
                 break;
             default:
                 break;
