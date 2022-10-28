@@ -8,7 +8,6 @@ public class ZoneActorTrigger : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            Debug.Log("Player enter a ZoneActorTrigger with: " + actors.Length + " actors in it");
             foreach (GameObject actor in actors)
             {
                 if (actor != null)

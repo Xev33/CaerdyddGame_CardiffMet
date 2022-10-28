@@ -28,6 +28,7 @@ public class Player : Singleton<Player>, ISubject
     public float hoveringSpeedDivider;
     public GameObject selfCamAnchor;
     public bool isInvicible = false;
+    public bool isOnMovingPlatform = false;
     [HideInInspector] public float maxSpeed;
     public float spinSpeed = 1700.0f; // The rotation to add for the spin move jump
     private Subject subject = new Subject();
@@ -113,6 +114,10 @@ public class Player : Singleton<Player>, ISubject
             anim.SetTrigger("GlideTrigger");
         else if (currentState == hoveringState)
             anim.SetTrigger("LandTrigger");
+
+
+
+        //transform.rotation = Quaternion.FromToRotation(hit.normal, Vector3.down);
     }
 
     private void OnCollisionEnter(Collision col)
@@ -296,6 +301,8 @@ public class Player : Singleton<Player>, ISubject
 
     public bool IsGrounded()
     {
+        if (isOnMovingPlatform == true)
+            return true;
         RaycastHit hit;
         Vector3 pos = this.gameObject.transform.position;
 

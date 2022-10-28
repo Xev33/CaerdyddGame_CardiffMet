@@ -12,7 +12,6 @@ namespace XDScript
         void Start()
         {
             currentCheckpoint = PlayerPrefs.GetInt("lastCheckPoint", 0);
-            Debug.Log(currentCheckpoint);
             if (checkPoints.Length > 0)
                 Player._instance.gameObject.transform.position = checkPoints[currentCheckpoint].transform.position;
         }
