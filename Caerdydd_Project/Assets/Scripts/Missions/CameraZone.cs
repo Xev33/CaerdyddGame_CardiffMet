@@ -11,6 +11,7 @@ public class CameraZone : MonoBehaviour
     private CameraFollow camera;
     [SerializeField] private float movementDuration;
     public bool hasAnchor;
+    public bool shouldBlockYAxis;
     [SerializeField] private float newCamTimeOffSet = 0.2f;
     [HideInInspector] public GameObject anchor;
     [HideInInspector] public bool shouldLookAtPlayer;
@@ -27,6 +28,12 @@ public class CameraZone : MonoBehaviour
         if (col.tag == "Player" && Player._instance.cameraZone != this)
         {
             Player._instance.cameraZone = this;
+
+            if (shouldBlockYAxis == false)
+                camera.yToFollow = cam;
+            else
+                camera.yToFollow = anchor;
+
             if (hasAnchor && anchor != null)
                 StartCoroutine(MoveToAnchor());
             else
@@ -100,7 +107,19 @@ public class CameraZoneEditor : Editor
 
 
         // Enable the custom vector 2 in editor if user choose "Custom" as movement type
-        if (myCamera.hasAnchor == true)
+        if (myCamera.hasAnchor == true && myCamera.shouldBlockYAxis == true)
+        {
+            myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
+            myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
+        }
+        else if (myCamera.hasAnchor == false && myCamera.shouldBlockYAxis == true)
+        {
+            myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
+            myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
+
+            myCamera.newPosition = EditorGUILayout.Vector3Field("New camera position", myCamera.newPosition);
+        }
+        else if (myCamera.hasAnchor == true && myCamera.shouldBlockYAxis == false)
         {
             myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
             myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
@@ -109,6 +128,7 @@ public class CameraZoneEditor : Editor
         {
             myCamera.newPosition = EditorGUILayout.Vector3Field("New camera position", myCamera.newPosition);
         }
+
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(target, "Changed Area Of Effect");
