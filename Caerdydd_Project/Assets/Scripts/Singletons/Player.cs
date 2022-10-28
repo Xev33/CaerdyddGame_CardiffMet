@@ -29,7 +29,7 @@ public class Player : Singleton<Player>, ISubject
     public GameObject selfCamAnchor;
     public bool isInvicible = false;
     [HideInInspector] public float maxSpeed;
-    private float rot = 10.0f; // The rotation to add for the spin move jump
+    public float spinSpeed = 1700.0f; // The rotation to add for the spin move jump
     private Subject subject = new Subject();
     private InputHandler inputHandler;
     private Rigidbody body;
@@ -203,7 +203,8 @@ public class Player : Singleton<Player>, ISubject
     {
         if ((isInvicible == true && damage == 1) || hp <= 0)
             return;
-
+        if (damage == 1 && isSpinning == true)
+            return;
         Camera.main.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
         isInvicible = true;
         if (hp == 2 && damage == 2)
@@ -298,17 +299,7 @@ public class Player : Singleton<Player>, ISubject
         RaycastHit hit;
         Vector3 pos = this.gameObject.transform.position;
 
-        Debug.DrawRay(pos, Vector3.down, Color.green);
-        Debug.DrawLine(new Vector3(pos.x - 0.5f, pos.y, pos.z), new Vector3(pos.x-0.5f, pos.y - distToGround, pos.z), Color.green);
-        Debug.DrawLine(new Vector3(pos.x + 0.5f, pos.y, pos.z), new Vector3(pos.x+0.5f, pos.y - distToGround, pos.z), Color.green);
-
         if (Physics.Raycast(pos, Vector3.down, out hit, (distToGround)))
-            if (hit.collider.isTrigger == false)
-                return true;
-        if (Physics.Raycast(new Vector3(pos.x - 1f, pos.y, pos.z), Vector3.down, out hit, (0)))
-            if (hit.collider.isTrigger == false)
-                return true;
-        if (Physics.Raycast(new Vector3(pos.x + 1f, pos.y, pos.z), Vector3.down, out hit, (0)))
             if (hit.collider.isTrigger == false)
                 return true;
         return false;
@@ -323,14 +314,16 @@ public class Player : Singleton<Player>, ISubject
             toRotation = Quaternion.LookRotation(new Vector3(0.5f, 0f, 0f));
         dragonMesh.transform.localRotation = Quaternion.RotateTowards(dragonMesh.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
+
     private IEnumerator SpinPlayer()
     {
         isSpinning = true;
         float timer = 0.0f;
         float duration = 0.5f;
         float normalizedValue = 0.0f;
-        Vector3 v1 = new Vector3(0, 0, 15);
-        Vector3 v2 = new Vector3(0, 0, rot);
+        float normalizedSpinSpeed = spinSpeed;
+        Vector3 v1 = new Vector3(0, 0, 0);
+        Vector3 v2 = new Vector3(0, 0, spinSpeed);
 
         while (timer < duration)
         {
@@ -338,7 +331,7 @@ public class Player : Singleton<Player>, ISubject
             normalizedValue = timer / duration; // We normalize our time for the lerp
             normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue); // Calcul for a smooth lerp
 
-            dragonMesh.transform.Rotate(Vector3.Lerp(v1, v2, normalizedValue));
+            dragonMesh.transform.Rotate(new Vector3(0, 0, normalizedSpinSpeed * Time.deltaTime));
 
             yield return null;
         }

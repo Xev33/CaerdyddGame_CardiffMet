@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class FlyingEnemy : AbstractEnemy
 {
-    [SerializeField] private float speed;
     [SerializeField] private float waitingTime;
     [SerializeField] private float distanceMinToChange;
     [SerializeField] private GameObject[] waypoints;
@@ -13,6 +12,7 @@ public class FlyingEnemy : AbstractEnemy
 
     protected override void Awake()
     {
+        base.Awake();
         transPoint = new Vector3[waypoints.Length];
         for (int i = 0; i < waypoints.Length; i++)
         {
@@ -33,6 +33,13 @@ public class FlyingEnemy : AbstractEnemy
             StartCoroutine(WaitBeforeMove());
         }
         transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
+
+        if (transPoint[currentPoint].x < this.transform.position.x)
+            lastDirection = -1;
+        else
+            lastDirection = 1;
+
+        RotateMesh();
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -53,7 +60,6 @@ public class FlyingEnemy : AbstractEnemy
 
     protected override void KillEnemy()
     {
-        Destroy(damageZone);
         base.KillEnemy();
     }
 

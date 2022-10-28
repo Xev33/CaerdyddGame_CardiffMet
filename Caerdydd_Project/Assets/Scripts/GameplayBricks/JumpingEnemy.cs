@@ -20,8 +20,14 @@ public class JumpingEnemy : AbstractEnemy
         if (timer >= jumpCooldown)
         {
             body.velocity = new Vector2(body.velocity.y, jumpVelocity);
+            anim.SetTrigger("Jump");
             timer = 0.0f;
         }
+        if (player.transform.position.x > this.transform.position.x)
+            lastDirection = 1;
+        else
+            lastDirection = -1;
+        RotateMesh();
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -38,11 +44,5 @@ public class JumpingEnemy : AbstractEnemy
         {
             KillEnemy();
         }
-    }
-
-    protected override void KillEnemy()
-    {
-        Destroy(damageZone);
-        base.KillEnemy();
     }
 }

@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class WalkingEnemy : AbstractEnemy
 {
-    private int direction = 1;
-    [SerializeField] private float speed;
-
     void Update()
     {
         if (isTrigger == false)
             return;
-        body.velocity = new Vector2(direction * speed, body.velocity.y);
+        body.velocity = new Vector2(lastDirection * speed, body.velocity.y);
+        RotateMesh();
+        anim.SetFloat("Move", speed);
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -30,12 +29,6 @@ public class WalkingEnemy : AbstractEnemy
 
     private void OnCollisionEnter(Collision col)
     {
-        direction *= -1;
-    }
-
-    protected override void KillEnemy()
-    {
-        Destroy(damageZone);
-        base.KillEnemy();
+        lastDirection *= -1;
     }
 }
