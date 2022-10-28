@@ -10,7 +10,10 @@ public class ZoneActorTrigger : MonoBehaviour
         {
             Debug.Log("Player enter a ZoneActorTrigger with: " + actors.Length + " actors in it");
             foreach (GameObject actor in actors)
-                actor.GetComponent<ITriggerActor>().TriggerActor();
+            {
+                if (actor != null)
+                    actor.GetComponent<ITriggerActor>().TriggerActor();
+            }
             Destroy(this.gameObject);
         }
     }

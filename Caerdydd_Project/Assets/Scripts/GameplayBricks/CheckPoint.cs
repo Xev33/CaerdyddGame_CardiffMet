@@ -32,7 +32,6 @@ public class CheckPoint : MonoBehaviour, ISubject
     {
         NotifyObservers(this.gameObject, E_Event.CHECKPOINT_REACHED);
         isOn = true;
-        Debug.Log(this.gameObject.GetComponent<Renderer>().material);
 
         // Graphic aspect
         this.gameObject.GetComponent<Renderer>().material = materialOn;

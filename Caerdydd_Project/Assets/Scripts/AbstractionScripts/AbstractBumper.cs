@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class AbstractBumper : MonoBehaviour
 {
-    private Player player;
+    protected Player player;
     [SerializeField] private float bumpProjection;
 
     private void Start()
@@ -12,9 +12,12 @@ public abstract class AbstractBumper : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (player.currentState != player.standingState && Player._instance.hp > 0)
+        if (other.tag == "Player")
         {
-            player.SpinJump(bumpProjection);
+            if (player.currentState != player.standingState && Player._instance.hp > 0 && player.isInvicible == false)
+            {
+                player.SpinJump(bumpProjection);
+            }
         }
     }
 }

@@ -26,14 +26,14 @@ public class Player : Singleton<Player>, ISubject
     public float speed = 10.0f;
     public float rotationSpeed = 10.0f;
     public float hoveringSpeedDivider;
-    [HideInInspector] public float maxSpeed;
     public GameObject selfCamAnchor;
+    public bool isInvicible = false;
+    [HideInInspector] public float maxSpeed;
     private float rot = 10.0f; // The rotation to add for the spin move jump
     private Subject subject = new Subject();
     private InputHandler inputHandler;
     private Rigidbody body;
     private Animator anim;
-    private bool isInvicible = false;
     private bool shouldNotMove = false;
     [HideInInspector] public bool isSpinning = false;
 
