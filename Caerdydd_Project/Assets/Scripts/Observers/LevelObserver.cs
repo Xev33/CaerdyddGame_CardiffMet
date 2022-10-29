@@ -8,8 +8,8 @@ namespace XDScript
         [SerializeField] private AbstractMission mission;
         [SerializeField] private GameObject[] checkPoints;
         [SerializeField] private Gem[] gems = new Gem[10];
-        [SerializeField] private Gem[] gemsError; // Is use in Start function to check if ther is not enough (or too many) gems in the level
-        [SerializeField] private int[] gemsFounded = new int[10];
+        private Gem[] gemsError; // Is use in Start function to check if ther is not enough (or too many) gems in the level
+        private int[] gemsFounded = new int[10];
         [SerializeField] private int currentCheckpoint = 0;
         [SerializeField] private string levelName;
         [SerializeField] private PlayerUI canvasUi;
