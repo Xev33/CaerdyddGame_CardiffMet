@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5566691703458644171}
   - component: {fileID: 5566691703458644168}
   - component: {fileID: 5566691703458644169}
+  - component: {fileID: 4452439760168586688}
   m_Layer: 0
   m_Name: Petal
   m_TagString: Untagged
@@ -60,7 +61,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9864d3bba6fd565439b909d4a7051f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 400
+--- !u!114 &4452439760168586688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566691703458644174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4bcf9ac6b549c4b9f4b04e3e2745f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 200
 --- !u!1 &5566691703473010287
 GameObject:
   m_ObjectHideFlags: 0

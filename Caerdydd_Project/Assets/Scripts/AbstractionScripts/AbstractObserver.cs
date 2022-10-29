@@ -21,6 +21,7 @@ namespace XDScript
         LEVELEVENT_GET_KEY,
         CHECKPOINT_REACHED,
         PLAYER_DIES,
+        GEM_FOUNDED,
 
         // Achievmement event
         ACHIEVEMENT_QUITGAME,

@@ -7,13 +7,30 @@ namespace XDScript
     {
         [SerializeField] private AbstractMission mission;
         [SerializeField] private GameObject[] checkPoints;
+        [SerializeField] private Gem[] gems = new Gem[10];
+        [SerializeField] private Gem[] gemsError; // Is use in Start function to check if ther is not enough (or too many) gems in the level
+        [SerializeField] private int[] gemsFounded = new int[10];
         [SerializeField] private int currentCheckpoint = 0;
+        [SerializeField] private string levelName;
+        [SerializeField] private PlayerUI canvasUi;
 
         void Start()
         {
+            if (levelName == null)
+                Debug.Log(levelName);
+            gemsError = FindObjectsOfType<Gem>();
+            if (gemsError.Length != 10)
+                Debug.Log(gemsError[gemsError.Length]);
+            for (int i = 0; i < gemsFounded.Length; i++)
+            {
+                string name = levelName + i;
+                gemsFounded[i] = PlayerPrefs.GetInt(name, 0);
+                gems[i].UpdateMaterial(gemsFounded[i]);
+            }
             currentCheckpoint = PlayerPrefs.GetInt("lastCheckPoint", 0);
             if (checkPoints.Length > 0)
                 Player._instance.gameObject.transform.position = checkPoints[currentCheckpoint].transform.position;
+            canvasUi.CollectGems(GetNumberOfGem());
         }
     
         public override void OnNotify(GameObject entity, E_Event eventToTrigger)
@@ -22,6 +39,9 @@ namespace XDScript
             {
                 case E_Event.MISSION_STEP_COMPLETE:
                     mission.LaunchNextEvent();
+                    break;
+                case E_Event.GEM_FOUNDED:
+                    NewGemFounded(entity.GetComponent<Gem>().gemID);
                     break;
                 case E_Event.PLAYER_DIES:
                     if (entity.tag == "Player")
@@ -58,9 +78,41 @@ namespace XDScript
 
         private void ReloadScene()
         {
+            SaveGame();
+            if (checkPoints.Length > 0)
+                Player._instance.gameObject.transform.position = checkPoints[currentCheckpoint].transform.position;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        private void SaveGame()
+        {
             PlayerPrefs.SetInt("lastCheckPoint", currentCheckpoint);
             PlayerPrefs.SetInt("collectibleNumber", Player._instance.collectibleNbr);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            for (int i = 0; i < gemsFounded.Length; i++)
+            {
+                string name = levelName + i;
+                PlayerPrefs.SetInt(name, gemsFounded[i]);
+            }
+            PlayerPrefs.SetInt(name, GetNumberOfGem());
+        }
+
+        private void NewGemFounded(int index)
+        {
+            if (gemsFounded[index] == 1)
+                return;
+
+            gemsFounded[index] = 1;
+            canvasUi.CollectGems(GetNumberOfGem());
+        }
+
+        private int GetNumberOfGem()
+        {
+            int gemNbr = 0;
+
+            for (int i = 0; i < gemsFounded.Length; i++)
+                gemNbr += gemsFounded[i];
+            return gemNbr;
         }
     }
 }
