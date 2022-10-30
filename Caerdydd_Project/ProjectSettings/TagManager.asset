@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CheckPoint
   - KillZone
+  - InvisibleWall
   layers:
   - Default
   - TransparentFX

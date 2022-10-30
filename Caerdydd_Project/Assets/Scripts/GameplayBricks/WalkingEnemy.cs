@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class WalkingEnemy : AbstractEnemy
 {
+    [SerializeField] private bool shouldSartWalkRight = false;
+
+    private void Start()
+    {
+        player = Player._instance;
+        if (shouldSartWalkRight == false)
+            lastDirection = 1;
+    }
+
     void Update()
     {
         if (isTrigger == false)
@@ -25,6 +34,8 @@ public class WalkingEnemy : AbstractEnemy
         {
             KillEnemy();
         }
+        else if (other.tag == "InvisibleWall")
+            lastDirection *= -1;
     }
 
     private void OnCollisionEnter(Collision col)
