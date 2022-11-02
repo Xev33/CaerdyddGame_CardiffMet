@@ -30,7 +30,7 @@ public class WalkingEnemy : AbstractEnemy
                 KillEnemy();
             }
         }
-        else if (other.tag == "KillZone")
+        else if (other.tag == "KillZone" && other.gameObject.GetComponent<DamageZone>().isEnemy == false)
         {
             KillEnemy();
         }

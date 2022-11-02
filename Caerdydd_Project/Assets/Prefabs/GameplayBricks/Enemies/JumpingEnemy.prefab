@@ -247,6 +247,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7660239107892585562, guid: efd6f7670a6dd5b4292936fc3f44f1c8, type: 3}
+      propertyPath: isEnemy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7660239107892585566, guid: efd6f7670a6dd5b4292936fc3f44f1c8, type: 3}
       propertyPath: m_RootOrder
       value: 0

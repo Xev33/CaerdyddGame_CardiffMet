@@ -25,7 +25,7 @@ public class State_Standing : XDScript.IPlayerState
         if (player != null && XDScript.InputHandler._instance != null && XDScript.InputHandler._instance._Move != null)
             XDScript.InputHandler._instance._Move.Execute(player.gameObject);
 
-        if (isTimerOn == true)
+        if (isTimerOn == true && canJump == true)
         {
             timer += Time.deltaTime;
             if (timer >= timeToJump)

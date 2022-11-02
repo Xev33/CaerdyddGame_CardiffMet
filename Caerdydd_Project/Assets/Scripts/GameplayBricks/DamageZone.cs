@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
+    public bool isEnemy = false;
+
     private void OnTriggerStay(Collider col)
     {
         if (col.tag == "Player")
