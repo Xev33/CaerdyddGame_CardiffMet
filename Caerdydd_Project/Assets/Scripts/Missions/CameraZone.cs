@@ -47,8 +47,8 @@ public class CameraZone : MonoBehaviour
         float normalizedValue = 0f;
         Vector3 initialPos = cam.gameObject.transform.position;
         Quaternion initialRot = cam.gameObject.transform.rotation;
+        float lastOffSet = camera.timeOffSet;
 
-        camera.timeOffSet = newCamTimeOffSet;
         cam.gameObject.transform.parent = null;
         while (timer < movementDuration && Player._instance.cameraZone == this)
         {
@@ -56,12 +56,14 @@ public class CameraZone : MonoBehaviour
             normalizedValue = timer / movementDuration;
             normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue);
 
+            camera.timeOffSet = Mathf.Lerp(lastOffSet, newCamTimeOffSet, normalizedValue);
             cam.transform.position = Vector3.Lerp(initialPos, anchor.transform.position, normalizedValue);
             cam.transform.rotation = Quaternion.Lerp(initialRot, anchor.transform.rotation, normalizedValue);
 
             yield return null;
         }
 
+        camera.timeOffSet = newCamTimeOffSet;
         cam.transform.position = anchor.transform.position;
         cam.transform.rotation = anchor.transform.rotation;
         yield return null;
@@ -75,20 +77,22 @@ public class CameraZone : MonoBehaviour
             cam.transform.parent = Player._instance.gameObject.transform;
         Vector3 initialPos = cam.gameObject.transform.localPosition;
         Quaternion initialRot = cam.gameObject.transform.localRotation;
-        camera.timeOffSet = newCamTimeOffSet;
+        float lastOffSet = camera.timeOffSet;
 
-        while (timer < movementDuration && Player._instance.cameraZone == this) 
+        while (timer < movementDuration && Player._instance.cameraZone == this)
         {
             timer += Time.deltaTime;
             normalizedValue = timer / movementDuration;
             normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue);
 
+            camera.timeOffSet = Mathf.Lerp(lastOffSet, newCamTimeOffSet, normalizedValue);
             cam.transform.localPosition = Vector3.Lerp(initialPos, newPosition, normalizedValue);
             cam.transform.localRotation = Quaternion.Lerp(initialRot, anchor.transform.localRotation, normalizedValue);
 
             yield return null;
         }
 
+        camera.timeOffSet = newCamTimeOffSet;
         cam.transform.localPosition = newPosition;
         cam.transform.localRotation = anchor.transform.localRotation;
         yield return null;
