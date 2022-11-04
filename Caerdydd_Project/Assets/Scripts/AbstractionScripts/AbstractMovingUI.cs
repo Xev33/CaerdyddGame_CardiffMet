@@ -138,7 +138,7 @@ namespace XDScript
                 m_rectTransform.localScale = m_initialScale;
             while (timer < m_timeOfTraveling)
             {
-                timer += Time.deltaTime;
+                timer += Time.unscaledDeltaTime;
                 normalizedValue = timer / m_timeOfTraveling; // We normalize our time for the lerp
                 normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue); // Calcul for a smooth lerp
 

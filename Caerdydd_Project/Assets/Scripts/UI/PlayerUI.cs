@@ -85,8 +85,10 @@ public class PlayerUI : MonoBehaviour
             }
         }
 
+            Debug.Log("1 STILL ALIVE");
         if (isGamePaused == true && isOnPauseCD == false)
         {
+            Debug.Log("2 STILL ALIVE");
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1") || Input.GetKeyDown("joystick button 7"))
             {
                 StartCoroutine(ResumeGame());
@@ -266,10 +268,10 @@ public class PlayerUI : MonoBehaviour
         gemsNumber.ClosePopUp();
         anim.SetTrigger("Close");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         pauseBackGround.gameObject.SetActive(false);
-
+        Time.timeScale = 1f;
         isOnPauseCD = false;
         canPause = true;
         //Resume the music
@@ -277,6 +279,7 @@ public class PlayerUI : MonoBehaviour
 
     private IEnumerator PauseGame()
     {
+        Time.timeScale = 0f;
         isOnPauseCD = true;
         pauseBackGround.gameObject.SetActive(true);
         pauseMenu.OpenAllPopUps();
@@ -287,7 +290,7 @@ public class PlayerUI : MonoBehaviour
         canPause = false;
         //Pause the music
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
 
         isOnPauseCD = false;
         isGamePaused = true;
@@ -304,9 +307,12 @@ public class PlayerUI : MonoBehaviour
         gemsNumber.ClosePopUp();
         anim.SetTrigger("Close");
         blackGround.ClosePopUp();
+        Time.timeScale = 1f;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
 
+        PlayerPrefs.SetInt("lastCheckPoint", 0);
+        PlayerPrefs.SetInt("collectibleNumber", 0);
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 }
