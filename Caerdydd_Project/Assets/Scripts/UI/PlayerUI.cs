@@ -6,12 +6,14 @@ using System.Collections;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private PopUpController lvlCompleteAnchor;
+    [SerializeField] private PopUpController pauseMenu;
     [SerializeField] private PopUpBehavior hp1;
     [SerializeField] private PopUpBehavior hp2;
     [SerializeField] private PopUpBehavior gemsNumber;
     [SerializeField] private PopUpBehavior lifeDaffodil;
     [SerializeField] private Sprite[] petals = new Sprite[7];
     [SerializeField] private Image daffodilSprite;
+    [SerializeField] private Image pauseBackGround;
     [SerializeField] private PopUpBehavior blackGround;
     [SerializeField] private Animator anim;
     [SerializeField] private Animator animGem;
@@ -27,6 +29,10 @@ public class PlayerUI : MonoBehaviour
     private bool isCounterOpen = true;
     private bool isGemOpen = true;
     private bool isLvlCmptOpen = false;
+    private bool canPause = false;
+    private bool canNavigatePause = false;
+    private bool isOnPauseCD = false;  // CD = cooldown
+    private bool isGamePaused = false;
     private int nextlvlIndex = 0;
 
     private void Awake()
@@ -35,6 +41,7 @@ public class PlayerUI : MonoBehaviour
         animGem.SetTrigger("Open");
         lifeDaffodil.gameObject.GetComponent<Image>().enabled = false;
         StartCoroutine(EnableDaffodilSprite());
+        pauseBackGround.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -62,15 +69,33 @@ public class PlayerUI : MonoBehaviour
 
         if (isLvlCmptOpen == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 2"))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 1"))
             {
                 StartCoroutine(CloseEverythingToLoad(nextlvlIndex, false));
-            } else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown("joystick button 1"))
+            } else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown("joystick button 2"))
             {
                 StartCoroutine(CloseEverythingToLoad(nextlvlIndex, true));
             }
         }
+        if (isGamePaused == false && canPause == true && isOnPauseCD == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
+            {
+                StartCoroutine(PauseGame());
+            }
+        }
 
+        if (isGamePaused == true && isOnPauseCD == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1") || Input.GetKeyDown("joystick button 7"))
+            {
+                StartCoroutine(ResumeGame());
+            }
+            else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown("joystick button 2"))
+            {
+                StartCoroutine(QuitLevel());
+            }
+        }
     }
 
     public void TakeDamage(int hpLeft)
@@ -165,6 +190,8 @@ public class PlayerUI : MonoBehaviour
         yield return new WaitForSeconds(2f);
         lifeDaffodil.gameObject.GetComponent<Image>().enabled = true;
         lvlCompleteAnchor.gameObject.transform.localScale = new Vector3(1,1,1);
+        pauseMenu.gameObject.transform.localScale = new Vector3(1,1,1);
+        canPause = true;
     }
 
     private IEnumerator CompleteGem()
@@ -206,6 +233,8 @@ public class PlayerUI : MonoBehaviour
 
     public void OpenLevelCompleteUI(int sceneIndex)
     {
+        canPause = false;
+        pauseMenu.gameObject.SetActive(false);
         isLvlCmptOpen = true;
         anim.SetTrigger("Open");
         Player._instance.currentState = Player._instance.disableState;
@@ -226,5 +255,58 @@ public class PlayerUI : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         else
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
+    }
+
+    private IEnumerator ResumeGame()
+    {
+        isOnPauseCD = true;
+        pauseMenu.CloseAllPopUps();
+        canNavigatePause = false;
+        isGamePaused = false;
+        gemsNumber.ClosePopUp();
+        anim.SetTrigger("Close");
+
+        yield return new WaitForSeconds(0.5f);
+
+        pauseBackGround.gameObject.SetActive(false);
+
+        isOnPauseCD = false;
+        canPause = true;
+        //Resume the music
+    }
+
+    private IEnumerator PauseGame()
+    {
+        isOnPauseCD = true;
+        pauseBackGround.gameObject.SetActive(true);
+        pauseMenu.OpenAllPopUps();
+        if (isGemOpen == false)
+            gemsNumber.OpenPopUp();
+        anim.SetTrigger("Open");
+
+        canPause = false;
+        //Pause the music
+
+        yield return new WaitForSeconds(1);
+
+        isOnPauseCD = false;
+        isGamePaused = true;
+        canNavigatePause = true;
+    }
+
+    private IEnumerator QuitLevel()
+    {
+        pauseBackGround.gameObject.SetActive(false);
+        isOnPauseCD = true;
+        pauseMenu.CloseAllPopUps();
+        canNavigatePause = false;
+        isGamePaused = false;
+        gemsNumber.ClosePopUp();
+        anim.SetTrigger("Close");
+        blackGround.ClosePopUp();
+
+        yield return new WaitForSeconds(1);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 }
