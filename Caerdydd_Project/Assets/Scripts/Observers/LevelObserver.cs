@@ -13,6 +13,7 @@ namespace XDScript
         [SerializeField] private int currentCheckpoint = 0;
         [SerializeField] private string levelName;
         [SerializeField] private PlayerUI canvasUi;
+        [SerializeField] private int nextLevelIndex;
 
         void Start()
         {
@@ -54,6 +55,9 @@ namespace XDScript
                         currentCheckpoint = FindCheckPointIndex(ref entity);
                     }
                     break;
+                case E_Event.LEVEL_COMPLETE:
+                    CompleteLevel();
+                    break;
                 default:
                     Debug.Log("Nothing happened");
                     break;
@@ -78,6 +82,9 @@ namespace XDScript
 
         private void ReloadScene()
         {
+            PlayerPrefs.SetInt("lastCheckPoint", currentCheckpoint);
+            PlayerPrefs.SetInt("collectibleNumber", Player._instance.collectibleNbr);
+
             SaveGame();
             if (checkPoints.Length > 0)
                 Player._instance.gameObject.transform.position = checkPoints[currentCheckpoint].transform.position;
@@ -86,9 +93,6 @@ namespace XDScript
 
         private void SaveGame()
         {
-            PlayerPrefs.SetInt("lastCheckPoint", currentCheckpoint);
-            PlayerPrefs.SetInt("collectibleNumber", Player._instance.collectibleNbr);
-
             for (int i = 0; i < gemsFounded.Length; i++)
             {
                 string name = levelName + i;
@@ -113,6 +117,16 @@ namespace XDScript
             for (int i = 0; i < gemsFounded.Length; i++)
                 gemNbr += gemsFounded[i];
             return gemNbr;
+        }
+
+        private void CompleteLevel()
+        {
+            string nxtLvl = "IsLevel" + (nextLevelIndex + 1) + "Unlock";
+            PlayerPrefs.SetInt("lastCheckPoint", 0);
+            PlayerPrefs.SetInt("collectibleNumber", 0);
+            PlayerPrefs.SetInt(nxtLvl, 1);
+            SaveGame();
+            canvasUi.OpenLevelCompleteUI(nextLevelIndex);
         }
     }
 }

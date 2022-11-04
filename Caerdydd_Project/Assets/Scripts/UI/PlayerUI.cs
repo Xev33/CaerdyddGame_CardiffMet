@@ -1,10 +1,11 @@
-using UnityEngine;
+    using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 
 public class PlayerUI : MonoBehaviour
 {
+    [SerializeField] private PopUpController lvlCompleteAnchor;
     [SerializeField] private PopUpBehavior hp1;
     [SerializeField] private PopUpBehavior hp2;
     [SerializeField] private PopUpBehavior gemsNumber;
@@ -25,6 +26,8 @@ public class PlayerUI : MonoBehaviour
     private float timerGem = 0f;
     private bool isCounterOpen = true;
     private bool isGemOpen = true;
+    private bool isLvlCmptOpen = false;
+    private int nextlvlIndex = 0;
 
     private void Awake()
     {
@@ -46,7 +49,7 @@ public class PlayerUI : MonoBehaviour
                 isCounterOpen = false;
             }
         }
-        if (isGemOpen == true)
+        if (isGemOpen == true && isLvlCmptOpen == false)
         {
             timerGem += Time.deltaTime;
             if (timerGem > gemCountDuration)
@@ -54,6 +57,17 @@ public class PlayerUI : MonoBehaviour
                 gemsNumber.ClosePopUp();
                 timer = 0.0f;
                 isGemOpen = false;
+            }
+        }
+
+        if (isLvlCmptOpen == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 2"))
+            {
+                StartCoroutine(CloseEverythingToLoad(nextlvlIndex, false));
+            } else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown("joystick button 1"))
+            {
+                StartCoroutine(CloseEverythingToLoad(nextlvlIndex, true));
             }
         }
 
@@ -150,6 +164,7 @@ public class PlayerUI : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         lifeDaffodil.gameObject.GetComponent<Image>().enabled = true;
+        lvlCompleteAnchor.gameObject.transform.localScale = new Vector3(1,1,1);
     }
 
     private IEnumerator CompleteGem()
@@ -187,5 +202,29 @@ public class PlayerUI : MonoBehaviour
         gemNbrTxt.color = txtGoldenColor;
         gemNbrTxt2.color = txtGoldenColor;
         yield return null;
+    }
+
+    public void OpenLevelCompleteUI(int sceneIndex)
+    {
+        isLvlCmptOpen = true;
+        anim.SetTrigger("Open");
+        Player._instance.currentState = Player._instance.disableState;
+        nextlvlIndex = sceneIndex;
+        if (isGemOpen == false)
+            gemsNumber.OpenPopUp();
+        lvlCompleteAnchor.OpenAllPopUps();
+    }
+
+    private IEnumerator CloseEverythingToLoad(int sceneIndex, bool shouldQuit)
+    {
+        anim.SetTrigger("Close");
+        this.gameObject.GetComponent<PopUpController>().CloseAllPopUps();
+
+        yield return new WaitForSeconds(2);
+
+        if (shouldQuit == true)
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        else
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
     }
 }

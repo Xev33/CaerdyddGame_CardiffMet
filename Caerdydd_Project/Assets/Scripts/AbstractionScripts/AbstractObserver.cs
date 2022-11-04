@@ -22,6 +22,7 @@ namespace XDScript
         CHECKPOINT_REACHED,
         PLAYER_DIES,
         GEM_FOUNDED,
+        LEVEL_COMPLETE,
 
         // Achievmement event
         ACHIEVEMENT_QUITGAME,

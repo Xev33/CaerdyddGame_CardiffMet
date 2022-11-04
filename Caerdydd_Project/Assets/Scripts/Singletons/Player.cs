@@ -143,12 +143,14 @@ public class Player : Singleton<Player>, ISubject
             sleepTimer = 0f;
             lastDirection = direction;
         }
+        if (currentState == disableState)
+            direction = 0;
         if (shouldNotMove)
             body.velocity = new Vector2(direction, 0f);
         else
             body.velocity = new Vector2(direction * speed, body.velocity.y);
 
-        if (currentState == standingState)
+        if (currentState == standingState || currentState == disableState)
         {
             LaunchGivenAnimation(AnimationToLaunch.ANIM_IDLE);
             LaunchGivenAnimation(AnimationToLaunch.ANIM_GROUNDED);
