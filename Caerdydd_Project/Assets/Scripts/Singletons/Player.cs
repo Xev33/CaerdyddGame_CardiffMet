@@ -210,8 +210,8 @@ public class Player : Singleton<Player>, ISubject
     {
         if ((isInvicible == true && damage == 1) || hp <= 0)
             return;
-        if (damage == 1 && isSpinning == true)
-            return;
+        //if (damage == 1 && isSpinning == true)
+        //    return;
         Camera.main.gameObject.GetComponent<CameraShake>().TriggerShake(0.2f);
         isInvicible = true;
         if (hp == 2 && damage == 2)

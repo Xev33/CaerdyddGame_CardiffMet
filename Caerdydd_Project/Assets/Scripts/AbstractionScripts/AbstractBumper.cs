@@ -16,7 +16,7 @@ public abstract class AbstractBumper : MonoBehaviour
         if (other.tag == "Player")
         {
 
-            if (player.currentState != player.standingState && player.hp > 0 && player.isInvicible == false)
+            if (player.currentState != player.standingState && player.hp > 0 && player.gameObject.transform.position.y >= this.transform.position.y)
             {
                 player.SpinJump(bumpProjection);
                 StartCoroutine(StretchMesh());

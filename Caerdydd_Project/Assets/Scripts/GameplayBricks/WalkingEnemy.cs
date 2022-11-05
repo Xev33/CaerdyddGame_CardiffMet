@@ -25,10 +25,15 @@ public class WalkingEnemy : AbstractEnemy
         base.OnTriggerEnter(other);
         if (other.tag == "Player")
         {
-            if (player.currentState != player.standingState && Player._instance.hp > 0 && player.isInvicible == false)
+            if (other.gameObject.transform.position.y >= (this.transform.position.y + 1))
             {
-                KillEnemy();
+                if (player.currentState != player.standingState && Player._instance.hp > 0)
+                {
+                    KillEnemy();
+                }
             }
+            else
+                Player._instance.TakeHit(1);
         }
         else if (other.tag == "KillZone" && other.gameObject.GetComponent<DamageZone>().isEnemy == false)
         {
