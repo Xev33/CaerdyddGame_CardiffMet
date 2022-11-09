@@ -45,6 +45,7 @@ public class Player : Singleton<Player>, ISubject
     private float direction = 0f;
     private float timeBeforIdle = 5f;
     private float distToGround = 1.0f;
+    [HideInInspector] public float glidingFallingSpeed;
     public int collectibleNbr = 0;
 
     [SerializeField] private GameObject dragonMesh;
@@ -67,6 +68,7 @@ public class Player : Singleton<Player>, ISubject
     #region Unity functions
     void Start()
     {
+        glidingFallingSpeed = -1.0f;
         maxSpeed = speed;
         body = GetComponent<Rigidbody>();
         anim = dragonMesh.gameObject.GetComponent<Animator>();
@@ -191,9 +193,9 @@ public class Player : Singleton<Player>, ISubject
         if (isSpinning == true)
             return;
         if (lastDirection > 0)
-            body.velocity = new Vector2(1.0f * speed, ((-1) * (fallingGlidingSpeed / 10)));
+            body.velocity = new Vector2(1.0f * speed, (glidingFallingSpeed * (fallingGlidingSpeed / 10)));
         else if (lastDirection < 0)
-            body.velocity = new Vector2(-1.0f * speed, ((-1) * (fallingGlidingSpeed / 10)));
+            body.velocity = new Vector2(-1.0f * speed, (glidingFallingSpeed * (fallingGlidingSpeed / 10)));
         RotateMesh();
     }
 

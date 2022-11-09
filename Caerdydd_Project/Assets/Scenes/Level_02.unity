@@ -2217,3 +2217,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf54bd21d0d07e4fbc2ae02cb6eced1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1800950600392849678
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276167, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800950600193276171, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
+      propertyPath: m_Name
+      value: WindZone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f40309f2e2716f4f94ff00e834a1944, type: 3}
