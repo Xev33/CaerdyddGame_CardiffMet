@@ -85,10 +85,8 @@ public class PlayerUI : MonoBehaviour
             }
         }
 
-            Debug.Log("1 STILL ALIVE");
         if (isGamePaused == true && isOnPauseCD == false)
         {
-            Debug.Log("2 STILL ALIVE");
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1") || Input.GetKeyDown("joystick button 7"))
             {
                 StartCoroutine(ResumeGame());

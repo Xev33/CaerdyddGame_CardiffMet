@@ -6,6 +6,7 @@ public class FlyingEnemy : AbstractEnemy
     [SerializeField] private float waitingTime;
     [SerializeField] private float distanceMinToChange;
     [SerializeField] private GameObject[] waypoints;
+    [SerializeField] private bool shouldLookAtPlayer = false;
     private Vector3[] transPoint;
     private Vector3 velocity;
     private int currentPoint;
@@ -13,6 +14,8 @@ public class FlyingEnemy : AbstractEnemy
     protected override void Awake()
     {
         base.Awake();
+        if (waypoints.Length == 0)
+            return;
         transPoint = new Vector3[waypoints.Length];
         for (int i = 0; i < waypoints.Length; i++)
         {
@@ -25,6 +28,11 @@ public class FlyingEnemy : AbstractEnemy
     {
         if (isTrigger == false)
             return;
+        if (waypoints.Length == 0)
+        {
+            isTrigger = false;
+            return;
+        }
         if (Vector3.Distance(transPoint[currentPoint], this.transform.position) < distanceMinToChange)
         {
             currentPoint++;
@@ -34,10 +42,20 @@ public class FlyingEnemy : AbstractEnemy
         }
         transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
 
-        if (transPoint[currentPoint].x < this.transform.position.x)
-            lastDirection = -1;
+        if (shouldLookAtPlayer == false)
+        {
+            if (transPoint[currentPoint].x < this.transform.position.x)
+                lastDirection = -1;
+            else
+                lastDirection = 1;
+        }
         else
-            lastDirection = 1;
+        {
+            if (player.transform.position.x > this.transform.position.x)
+                lastDirection = 1;
+            else
+                lastDirection = -1;
+        }
 
         RotateMesh();
     }
@@ -54,6 +72,8 @@ public class FlyingEnemy : AbstractEnemy
                     KillEnemy();
                 }
             }
+            else
+                Player._instance.TakeHit(1);
         }
         else if (other.tag == "KillZone")
         {

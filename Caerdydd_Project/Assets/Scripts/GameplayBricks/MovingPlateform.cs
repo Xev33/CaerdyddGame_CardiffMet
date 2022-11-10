@@ -38,7 +38,8 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
                 currentPoint = 0;
             StartCoroutine(WaitBeforeMove());
         }
-        transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
+        //transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(this.transform.position, transPoint[currentPoint], speed * Time.deltaTime);
     }
 
     public void TriggerActor()
@@ -80,7 +81,7 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
         lastPoint = currentPoint;
         bool hasChanged = false;
 
-        while (timer < duration)
+        while (timer < duration || hasChanged == true)
         {
             timer += Time.deltaTime;
             if (currentPoint != lastPoint || Player._instance.IsGrounded() == true)

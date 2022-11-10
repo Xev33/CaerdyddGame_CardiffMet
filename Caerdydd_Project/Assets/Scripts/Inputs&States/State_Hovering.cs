@@ -39,10 +39,15 @@ public class State_Hovering : XDScript.IPlayerState
 
         if (player.IsGrounded() == true && player.hp > 0)
         {
+            StopHovering(ref player);
+            //player.LaunchGivenAnimation(AnimationToLaunch.ANIM_GROUNDED);
+        }
+    }
+
+    public void StopHovering(ref Player player)
+    {
             player.speed = player.maxSpeed;
             timer = 0.0f;
             player.currentState = player.standingState;
-            //player.LaunchGivenAnimation(AnimationToLaunch.ANIM_GROUNDED);
-        }
     }
 }

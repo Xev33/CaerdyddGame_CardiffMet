@@ -46,6 +46,8 @@ public class WindZone : MonoBehaviour
         {
             if (Player._instance.currentState != Player._instance.glidingState)
                 body.velocity = projectionDir;
+            if (Player._instance.currentState == Player._instance.hoveringState)
+                Player._instance.hoveringState.StopHovering(ref Player._instance);
         }
     }
 
