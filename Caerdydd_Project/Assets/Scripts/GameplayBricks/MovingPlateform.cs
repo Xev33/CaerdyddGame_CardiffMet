@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovingPlateform : MonoBehaviour, ITriggerActor
 {
+    [SerializeField] private bool shouldLerp = false;
     [SerializeField] private float speed;
     [SerializeField] private float waitingTime;
     [SerializeField] private float distanceMinToChange;
@@ -38,8 +39,10 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
                 currentPoint = 0;
             StartCoroutine(WaitBeforeMove());
         }
-        //transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
-        transform.position = Vector3.MoveTowards(this.transform.position, transPoint[currentPoint], speed * Time.deltaTime);
+        if (shouldLerp == true)
+            transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
+        else
+            transform.position = Vector3.MoveTowards(this.transform.position, transPoint[currentPoint], speed * Time.deltaTime);
     }
 
     public void TriggerActor()
@@ -77,11 +80,13 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
     private IEnumerator WaitToUnparent(Collision c)
     {
         float timer = 0.0f;
-        float duration = 1.0f;
         lastPoint = currentPoint;
         bool hasChanged = false;
+        float duration = 0.5f;
 
-        while (timer < duration || hasChanged == true)
+        if (isTrigger == false)
+            duration = 0.0f;
+        while (timer < duration)
         {
             timer += Time.deltaTime;
             if (currentPoint != lastPoint || Player._instance.IsGrounded() == true)
