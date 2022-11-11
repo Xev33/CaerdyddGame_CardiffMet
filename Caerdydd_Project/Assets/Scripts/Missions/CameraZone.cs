@@ -12,6 +12,7 @@ public class CameraZone : MonoBehaviour
     [SerializeField] private float movementDuration;
     public bool hasAnchor;
     public bool shouldBlockYAxis;
+    public bool shouldBlockXAxis;
     [SerializeField] private float newCamTimeOffSet = 0.2f;
     [HideInInspector] public GameObject anchor;
     [HideInInspector] public bool shouldLookAtPlayer;
@@ -33,7 +34,10 @@ public class CameraZone : MonoBehaviour
                 camera.yToFollow = cam;
             else
                 camera.yToFollow = anchor;
-
+            if (shouldBlockXAxis == false)
+                camera.xToFollow = cam;
+            else
+                camera.xToFollow = anchor;
             if (hasAnchor && anchor != null)
                 StartCoroutine(MoveToAnchor());
             else
@@ -116,13 +120,13 @@ public class CameraZoneEditor : Editor
         CameraZone myCamera = target as CameraZone;
 
 
-        // Enable the custom vector 2 in editor if user choose "Custom" as movement type
-        if (myCamera.hasAnchor == true && myCamera.shouldBlockYAxis == true)
+        // Enable the custom vector 2 in editor if user chooses to block an axis/uses an anchor as movement type
+        if (myCamera.hasAnchor == true && (myCamera.shouldBlockYAxis == true || myCamera.shouldBlockXAxis == true))
         {
             myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
             myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
         }
-        else if (myCamera.hasAnchor == false && myCamera.shouldBlockYAxis == true)
+        else if (myCamera.hasAnchor == false && (myCamera.shouldBlockYAxis == true || myCamera.shouldBlockXAxis == true))
         {
             myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
             myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
