@@ -234,7 +234,6 @@ public class PlayerUI : MonoBehaviour
     public void OpenLevelCompleteUI(int sceneIndex)
     {
         canPause = false;
-        pauseMenu.gameObject.SetActive(false);
         isLvlCmptOpen = true;
         anim.SetTrigger("Open");
         Player._instance.currentState = Player._instance.disableState;
