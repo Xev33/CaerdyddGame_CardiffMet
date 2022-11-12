@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5a6a235e65a3be34aa4dbad003ca8126, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -15433,6 +15433,7 @@ MonoBehaviour:
   objectToFollow: {fileID: 0}
   timeOffSet: 0
   yToFollow: {fileID: 0}
+  xToFollow: {fileID: 0}
 --- !u!114 &1062865036
 MonoBehaviour:
   m_ObjectHideFlags: 0
