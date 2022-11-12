@@ -69,11 +69,13 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
     void OnCollisionEnter(Collision c)
     {
         c.transform.parent = this.transform;
-        Player._instance.isOnMovingPlatform = true;
+        if (c.gameObject.tag == "Player")
+            Player._instance.isOnMovingPlatform = true;
     }
     void OnCollisionExit(Collision c)
     {
-        Player._instance.isOnMovingPlatform = false;
+        if (c.gameObject.tag == "Player")
+            Player._instance.isOnMovingPlatform = false;
         StartCoroutine(WaitToUnparent(c));
     }
 
@@ -81,22 +83,17 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
     {
         float timer = 0.0f;
         lastPoint = currentPoint;
-        bool hasChanged = false;
-        float duration = 0.5f;
+        float duration = 1.1f;
 
         if (isTrigger == false)
             duration = 0.0f;
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            if (currentPoint != lastPoint || Player._instance.IsGrounded() == true)
-            {
-                c.transform.parent = null;
-                hasChanged = true;
-            }
+            if (currentPoint != lastPoint && Player._instance.isOnMovingPlatform == false || isTrigger == false)
+                timer = duration + 1.0f;
             yield return null;
         }
-        if (hasChanged == false)
-            c.transform.parent = null;
+        Player._instance.transform.parent = null;
     }
 }
