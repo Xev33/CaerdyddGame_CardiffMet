@@ -7,21 +7,21 @@ using UnityEditor;
 
 public class CameraZone : MonoBehaviour
 {
-    private Camera cam;
+    private GameObject cam;
+    private CameraFollow camera;
     [SerializeField] private float movementDuration;
     public bool hasAnchor;
+    public bool shouldBlockYAxis;
+    public bool shouldBlockXAxis;
+    [SerializeField] private float newCamTimeOffSet = 0.2f;
     [HideInInspector] public GameObject anchor;
     [HideInInspector] public bool shouldLookAtPlayer;
     [HideInInspector] public Vector3 newPosition;
-    [HideInInspector] public Quaternion newRotation;
 
-    private void Awake()
+    private void Start()
     {
-        cam = Camera.main;
-        newRotation.x = newRotation.x / 100;
-        newRotation.y = newRotation.y / 100;
-        newRotation.z = newRotation.z / 100;
-        //newRotation.w = cam.transform.rotation.w;
+        cam = Player._instance.selfCamAnchor;
+        camera = Camera.main.gameObject.GetComponent<CameraFollow>();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -29,6 +29,15 @@ public class CameraZone : MonoBehaviour
         if (col.tag == "Player" && Player._instance.cameraZone != this)
         {
             Player._instance.cameraZone = this;
+
+            if (shouldBlockYAxis == false)
+                camera.yToFollow = cam;
+            else
+                camera.yToFollow = anchor;
+            if (shouldBlockXAxis == false)
+                camera.xToFollow = cam;
+            else
+                camera.xToFollow = anchor;
             if (hasAnchor && anchor != null)
                 StartCoroutine(MoveToAnchor());
             else
@@ -42,19 +51,28 @@ public class CameraZone : MonoBehaviour
         float normalizedValue = 0f;
         Vector3 initialPos = cam.gameObject.transform.position;
         Quaternion initialRot = cam.gameObject.transform.rotation;
+        float lastOffSet = camera.timeOffSet;
 
         cam.gameObject.transform.parent = null;
+        if (lastOffSet == 0.0f)
+            camera.timeOffSet = newCamTimeOffSet;
         while (timer < movementDuration && Player._instance.cameraZone == this)
         {
             timer += Time.deltaTime;
             normalizedValue = timer / movementDuration;
             normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue);
 
+            if (lastOffSet != 0.0f)
+                camera.timeOffSet = Mathf.Lerp(lastOffSet, newCamTimeOffSet, normalizedValue);
             cam.transform.position = Vector3.Lerp(initialPos, anchor.transform.position, normalizedValue);
             cam.transform.rotation = Quaternion.Lerp(initialRot, anchor.transform.rotation, normalizedValue);
 
             yield return null;
         }
+
+        camera.timeOffSet = newCamTimeOffSet;
+        cam.transform.position = anchor.transform.position;
+        cam.transform.rotation = anchor.transform.rotation;
         yield return null;
     }
 
@@ -62,21 +80,31 @@ public class CameraZone : MonoBehaviour
     {
         float timer = 0f;
         float normalizedValue = 0f;
-        cam.transform.parent = Player._instance.gameObject.transform;
+        if (Player._instance.hp > 0)
+            cam.transform.parent = Player._instance.gameObject.transform;
         Vector3 initialPos = cam.gameObject.transform.localPosition;
         Quaternion initialRot = cam.gameObject.transform.localRotation;
+        float lastOffSet = camera.timeOffSet;
 
+        if (lastOffSet == 0.0f)
+            camera.timeOffSet = newCamTimeOffSet;
         while (timer < movementDuration && Player._instance.cameraZone == this)
         {
             timer += Time.deltaTime;
             normalizedValue = timer / movementDuration;
             normalizedValue = normalizedValue * normalizedValue * (3f - 2f * normalizedValue);
 
+            if (lastOffSet != 0.0f)
+                camera.timeOffSet = Mathf.Lerp(lastOffSet, newCamTimeOffSet, normalizedValue);
             cam.transform.localPosition = Vector3.Lerp(initialPos, newPosition, normalizedValue);
-            cam.transform.localRotation = Quaternion.Lerp(initialRot, newRotation, normalizedValue);
+            cam.transform.localRotation = Quaternion.Lerp(initialRot, anchor.transform.localRotation, normalizedValue);
 
             yield return null;
         }
+
+        camera.timeOffSet = newCamTimeOffSet;
+        cam.transform.localPosition = newPosition;
+        cam.transform.localRotation = anchor.transform.localRotation;
         yield return null;
     }
 }
@@ -90,11 +118,22 @@ public class CameraZoneEditor : Editor
     {
         DrawDefaultInspector(); // for other non-HideInInspector fields
         CameraZone myCamera = target as CameraZone;
-        Vector4 vec4 = QuaternionToVector4(myCamera.newRotation);
 
 
-        // Enable the custom vector 2 in editor if user choose "Custom" as movement type
-        if (myCamera.hasAnchor == true)
+        // Enable the custom vector 2 in editor if user chooses to block an axis/uses an anchor as movement type
+        if (myCamera.hasAnchor == true && (myCamera.shouldBlockYAxis == true || myCamera.shouldBlockXAxis == true))
+        {
+            myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
+            myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
+        }
+        else if (myCamera.hasAnchor == false && (myCamera.shouldBlockYAxis == true || myCamera.shouldBlockXAxis == true))
+        {
+            myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
+            myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
+
+            myCamera.newPosition = EditorGUILayout.Vector3Field("New camera position", myCamera.newPosition);
+        }
+        else if (myCamera.hasAnchor == true && myCamera.shouldBlockYAxis == false)
         {
             myCamera.anchor = (GameObject)EditorGUILayout.ObjectField("Anchor object", myCamera.anchor, typeof(GameObject), true);
             myCamera.shouldLookAtPlayer = EditorGUILayout.ToggleLeft("Should look at player", myCamera.shouldLookAtPlayer);
@@ -102,22 +141,12 @@ public class CameraZoneEditor : Editor
         else
         {
             myCamera.newPosition = EditorGUILayout.Vector3Field("New camera position", myCamera.newPosition);
-            myCamera.newRotation = Vector4ToQuaternion(EditorGUILayout.Vector4Field("New camera rotation", vec4));
         }
+
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(target, "Changed Area Of Effect");
         }
-    }
-
-    Quaternion Vector4ToQuaternion(Vector4 v4)
-    {
-        return new Quaternion(v4.x, v4.y, v4.z, v4.w);
-    }
-
-    Vector4 QuaternionToVector4(Quaternion q)
-    {
-        return new Vector4(q.x, q.y, q.z, q.w);
     }
 }
 #endif

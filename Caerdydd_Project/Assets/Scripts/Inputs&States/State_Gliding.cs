@@ -8,18 +8,23 @@ public class State_Gliding : XDScript.IPlayerState
 
     public void HandleInput(Player player)
     {
+        if (player.hp <= 0)
+            return;
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && canHover)
         {
-            player.speed /= player.hoveringSpeedDivider;
-            timer = 0.0f;
             player.currentState = player.hoveringState;
+            player.speed = player.maxSpeed / player.hoveringSpeedDivider;
+            timer = 0.0f;
             player.hoveringState.canGlide = false;
+            player.hoveringState.timer = 0.0f;
             XDScript.InputHandler._instance._Hover.Execute(player.gameObject);
         }
     }
 
     public void StateUpdate(Player player)
     {
+        if (player.hp <= 0)
+            return;
         XDScript.InputHandler._instance._Glide.Execute(player.gameObject);
 
         if (canHover == false)
@@ -36,6 +41,7 @@ public class State_Gliding : XDScript.IPlayerState
         {
             player.glidingState.timer = 0.0f;
             player.currentState = player.standingState;
+            //player.LaunchGivenAnimation(AnimationToLaunch.ANIM_GROUNDED);
         }
     }
 
