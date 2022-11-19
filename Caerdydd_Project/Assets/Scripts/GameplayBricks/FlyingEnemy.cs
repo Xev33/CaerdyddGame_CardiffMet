@@ -4,6 +4,7 @@ using UnityEngine;
 public class FlyingEnemy : AbstractEnemy
 {
     [SerializeField] private float waitingTime;
+    [SerializeField] private float timeToMove = 1.5f;
     [SerializeField] private float distanceMinToChange;
     [SerializeField] private GameObject[] waypoints;
     [SerializeField] private bool shouldLookAtPlayer = false;
@@ -40,7 +41,8 @@ public class FlyingEnemy : AbstractEnemy
                 currentPoint = 0;
             StartCoroutine(WaitBeforeMove());
         }
-        transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, timeToMove);
+        //transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
 
         if (shouldLookAtPlayer == false)
         {

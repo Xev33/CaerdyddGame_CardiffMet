@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 6657
+  controlID: 3746
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 6636
+  controlID: 3725
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -395,9 +395,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 149.1614, y: -44.00878, z: -0.17503738}
+    m_Target: {x: 316.6917, y: -25.769457, z: 5.8879967}
     speed: 2
-    m_Value: {x: 149.1614, y: -44.00878, z: -0.17503738}
+    m_Value: {x: 316.6917, y: -25.769457, z: 5.8879967}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -448,9 +448,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 53.470043
+    m_Target: 22.888882
     speed: 2
-    m_Value: 53.470043
+    m_Value: 22.888882
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -494,8 +494,8 @@ MonoBehaviour:
     y: 472
     width: 906
     height: 475
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -520,8 +520,8 @@ MonoBehaviour:
     y: 0
     width: 231
     height: 947
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -560,7 +560,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c24bfeff10e9feff244dffff5295ffff84b0ffff32fbffff90eb00006eee000088f100006ef40000c0d90300f6dc0300cafe0300
+      m_ExpandedIDs: 36fbffff565e000034610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -603,8 +603,8 @@ MonoBehaviour:
     y: 0
     width: 353
     height: 947
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -651,22 +651,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Singletons
+    - Assets/Scripts/GameplayBricks
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Singletons
+  - Assets/Scripts/GameplayBricks
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Cardiff Courses\CardiffGameRepo\Caerdydd_Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 84720100
-    m_LastClickedID: 94852
-    m_ExpandedIDs: 00000000ae750000b0750000b2750000c675000000ca9a3b
+    m_SelectedIDs: e2750000
+    m_LastClickedID: 30178
+    m_ExpandedIDs: 00000000bc750000be750000c0750000c2750000da75000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -694,7 +694,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ae750000b0750000b275000000ca9a3b
+    m_ExpandedIDs: 00000000bc750000be750000c0750000c275000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
