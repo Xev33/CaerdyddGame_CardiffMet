@@ -310,6 +310,6 @@ public class PlayerUI : MonoBehaviour
 
         PlayerPrefs.SetInt("lastCheckPoint", 0);
         PlayerPrefs.SetInt("collectibleNumber", 0);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }
