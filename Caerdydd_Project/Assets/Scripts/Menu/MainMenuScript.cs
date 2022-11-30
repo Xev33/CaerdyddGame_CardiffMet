@@ -28,6 +28,7 @@ public class MainMenuScript : MonoBehaviour
 
         if (GetUnlockedLevels())
         {
+            lockObj.SetActive(false);
             levelsMenu.SetActive(true);
             levelNotUnlocked.GetComponent<Button>().enabled = true;
         }
@@ -49,7 +50,7 @@ public class MainMenuScript : MonoBehaviour
     {
         int isLevelUnlock;
 
-        isLevelUnlock = PlayerPrefs.GetInt("IsLevel3Unlock", 0);
+        isLevelUnlock = PlayerPrefs.GetInt("IsLevel2Unlock", 0);
 
         if (isLevelUnlock == 1)
         {

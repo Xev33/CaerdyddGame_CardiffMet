@@ -251,7 +251,7 @@ public class PlayerUI : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         if (shouldQuit == true)
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         else
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
     }
