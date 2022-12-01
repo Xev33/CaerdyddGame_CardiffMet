@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 71
+  controlID: 28532
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 123
+  controlID: 28517
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 0
     width: 430
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
-  m_EnterPlayModeBehavior: 0
+  m_EnterPlayModeBehavior: 1
   m_UseMipMap: 0
   m_VSyncEnabled: 0
   m_Gizmos: 0
@@ -594,9 +594,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 459.70206, y: 128.977, z: -8.080566}
+    m_Target: {x: -704.0098, y: -126.18811, z: 1282.3191}
     speed: 2
-    m_Value: {x: 459.70206, y: 128.977, z: -8.080566}
+    m_Value: {x: -704.0098, y: -126.18811, z: 1282.3191}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -643,20 +643,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.05395848, y: 0.023963286, z: -0.0012942917, w: 0.99826026}
+    m_Target: {x: 0.16119799, y: 0.76360554, z: -0.20887394, w: 0.5893387}
     speed: 2
-    m_Value: {x: 0.053958185, y: 0.023963153, z: -0.0012942846, w: 0.9982548}
+    m_Value: {x: 0.16119799, y: 0.76360554, z: -0.20887394, w: 0.5893387}
   m_Size:
-    m_Target: 208.99712
+    m_Target: 871.3536
     speed: 2
-    m_Value: 208.99712
+    m_Value: 871.3536
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.8806001
-    m_SpeedNormalized: 0.94000006
+    m_Speed: 2
+    m_SpeedNormalized: 1
     m_SpeedMin: 0.01
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -705,9 +705,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 704d0100
-      m_LastClickedID: 85360
-      m_ExpandedIDs: 5c57fefffc0bffff640cffff060dffffae56ffff045bfffffeafffff7cf9ffff6078000082780000ae9e0000eca100002ead00004ab00000
+      m_SelectedIDs: a445fbffa645fbff
+      m_LastClickedID: -309850
+      m_ExpandedIDs: bc6cfbff1a70fbffb694fbffbc13fcffa6b8fdff10c1fdff2cc3fdff52c8fdffacc8fdfffe11feff3c2cfeff8c2cfeffea70feff7c76feff4e8afeff56a4feff34edfeffb6f6feff14f7feff6c40ffffb05affff005bffff8cd8ffff34fbffff7a600000a6600000260c03008e040400fc0005005e0905008eb20e00cab40e00acb50e0064a40f0044ca0f00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -772,22 +772,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Menu
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Menu
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Cardiff Courses\CardiffGameRepo\Caerdydd_Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7aec0000
-    m_LastClickedID: 60538
-    m_ExpandedIDs: 00000000de770000e0770000e2770000e4770000fa77000000ca9a3b
+    m_SelectedIDs: 7a6f0000
+    m_LastClickedID: 28538
+    m_ExpandedIDs: 00000000606f0000626f0000646f0000666f00007a6f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -815,7 +815,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000de770000e0770000e2770000e4770000
+    m_ExpandedIDs: 00000000606f0000626f0000646f0000666f00007a6f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -842,7 +842,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

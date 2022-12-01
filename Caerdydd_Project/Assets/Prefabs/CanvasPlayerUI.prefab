@@ -1638,7 +1638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_timeOfTravelingOpen: 0
-  m_timeOfTravelingClose: 0.5
+  m_timeOfTravelingClose: 2
   m_shouldStartOpen: 0
   m_shouldGrowUp: 0
   m_shouldShrink: 1
