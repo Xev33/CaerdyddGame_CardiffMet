@@ -50,7 +50,7 @@ public class MainMenuScript : MonoBehaviour
     {
         int isLevelUnlock;
 
-        isLevelUnlock = PlayerPrefs.GetInt("IsLevel2Unlock", 0);
+        isLevelUnlock = PlayerPrefs.GetInt("IsLevel3Unlock", 0);
 
         if (isLevelUnlock == 1)
         {

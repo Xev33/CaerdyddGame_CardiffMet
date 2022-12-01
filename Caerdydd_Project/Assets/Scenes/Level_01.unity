@@ -28836,7 +28836,7 @@ MonoBehaviour:
   currentCheckpoint: 0
   levelName: Level_01
   canvasUi: {fileID: 1574230908}
-  nextLevelIndex: 3
+  nextLevelIndex: 2
 --- !u!4 &2082014758
 Transform:
   m_ObjectHideFlags: 0
