@@ -11,6 +11,43 @@ public class MainMenuScript : MonoBehaviour
     public GameObject levelNotUnlocked;
     public GameObject lockObj;
 
+    public void Update()
+    {
+        if (mainMenu.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 3"))
+            {
+                SceneManager.LoadScene(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 1"))
+            {
+                Quit();
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 2"))
+            {
+                OpenLevelsMenu();
+            }
+        }
+        else if (levelsMenu.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 2"))
+            {
+                Level1();
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 1"))
+            {
+                if (GetUnlockedLevels())
+                {
+                    Level2();
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown("joystick button 0"))
+            {
+                BackToMain();
+            }
+        }
+    }
+
     public void Play()
     {
         SceneManager.LoadScene(1);
