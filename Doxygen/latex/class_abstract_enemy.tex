@@ -1,0 +1,82 @@
+\hypertarget{class_abstract_enemy}{}\doxysection{Abstract\+Enemy Class Reference}
+\label{class_abstract_enemy}\index{AbstractEnemy@{AbstractEnemy}}
+Inheritance diagram for Abstract\+Enemy\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_abstract_enemy}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_abstract_enemy_a72f17cbbf66c0d0c547ceb725761789b}{Trigger\+Actor}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_ab2fd205dba60f628bdaf764a682f5b1f}\label{class_abstract_enemy_ab2fd205dba60f628bdaf764a682f5b1f}} 
+virtual void {\bfseries Awake} ()
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a6f63db6a77b4901f0a3b8d16f58c1d66}\label{class_abstract_enemy_a6f63db6a77b4901f0a3b8d16f58c1d66}} 
+virtual void {\bfseries Kill\+Enemy} ()
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a5550f8b545e978b40eaeb90eefb09d7a}\label{class_abstract_enemy_a5550f8b545e978b40eaeb90eefb09d7a}} 
+virtual void {\bfseries Rotate\+Mesh} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_abc4b74bdd4ded743822130974aeb9fcc}\label{class_abstract_enemy_abc4b74bdd4ded743822130974aeb9fcc}} 
+Rigidbody {\bfseries body}
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a2a78e7681184b7198dff2aaf1d187f0a}\label{class_abstract_enemy_a2a78e7681184b7198dff2aaf1d187f0a}} 
+bool {\bfseries is\+Trigger} = false
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a867ab12daad11181654da495fecbd66d}\label{class_abstract_enemy_a867ab12daad11181654da495fecbd66d}} 
+float {\bfseries rotation\+Speed} = 10.\+0f
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a35274e60f4c18f3dc7c5cec63d8515ec}\label{class_abstract_enemy_a35274e60f4c18f3dc7c5cec63d8515ec}} 
+float {\bfseries waiting\+Time\+To\+Trigger}
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_af31363f489b184ade2f78b94ebfd3d4b}\label{class_abstract_enemy_af31363f489b184ade2f78b94ebfd3d4b}} 
+float {\bfseries speed} = 0.\+0f
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_af189e9d083075be35fc8999f532e6f46}\label{class_abstract_enemy_af189e9d083075be35fc8999f532e6f46}} 
+\mbox{\hyperlink{class_damage_zone}{Damage\+Zone}} {\bfseries damage\+Zone}
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a479a77f21e23141ae93f18cdaffcbbd4}\label{class_abstract_enemy_a479a77f21e23141ae93f18cdaffcbbd4}} 
+Game\+Object {\bfseries dragon\+Mesh}
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a8f0d0635622581d77c82b76dd3f95ee1}\label{class_abstract_enemy_a8f0d0635622581d77c82b76dd3f95ee1}} 
+int {\bfseries last\+Direction} = -\/1
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_a3acc46b88b183a26afc42f940b1b4780}\label{class_abstract_enemy_a3acc46b88b183a26afc42f940b1b4780}} 
+Animator {\bfseries anim}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_ab1ed9efd705a53e49c1035f1114e06bc}\label{class_abstract_enemy_ab1ed9efd705a53e49c1035f1114e06bc}} 
+IEnumerator {\bfseries Wait\+To\+Trigger} ()
+\item 
+\mbox{\Hypertarget{class_abstract_enemy_ade47ae23207975213e16be7f1cbd9cb5}\label{class_abstract_enemy_ade47ae23207975213e16be7f1cbd9cb5}} 
+IEnumerator {\bfseries Play\+Death\+Anim\+And\+Destroy} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_abstract_enemy_a72f17cbbf66c0d0c547ceb725761789b}\label{class_abstract_enemy_a72f17cbbf66c0d0c547ceb725761789b}} 
+\index{AbstractEnemy@{AbstractEnemy}!TriggerActor@{TriggerActor}}
+\index{TriggerActor@{TriggerActor}!AbstractEnemy@{AbstractEnemy}}
+\doxysubsubsection{\texorpdfstring{TriggerActor()}{TriggerActor()}}
+{\footnotesize\ttfamily void Abstract\+Enemy.\+Trigger\+Actor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_i_trigger_actor}{ITrigger\+Actor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Abstraction\+Scripts/Abstract\+Enemy.\+cs\end{DoxyCompactItemize}

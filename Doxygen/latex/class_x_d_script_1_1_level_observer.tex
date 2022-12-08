@@ -1,0 +1,88 @@
+\hypertarget{class_x_d_script_1_1_level_observer}{}\doxysection{XDScript.\+Level\+Observer Class Reference}
+\label{class_x_d_script_1_1_level_observer}\index{XDScript.LevelObserver@{XDScript.LevelObserver}}
+Inheritance diagram for XDScript.\+Level\+Observer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_x_d_script_1_1_level_observer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_x_d_script_1_1_level_observer_af0b5f6fa317e7d12d116ef514ef3a0ec}{On\+Notify}} (Game\+Object entity, \mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}} event\+To\+Trigger)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_abb77ec3e070623ed23dad151eeb88229}\label{class_x_d_script_1_1_level_observer_abb77ec3e070623ed23dad151eeb88229}} 
+void {\bfseries Start} ()
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a5bd001947de7ac4ae96d49c5d7834787}\label{class_x_d_script_1_1_level_observer_a5bd001947de7ac4ae96d49c5d7834787}} 
+void {\bfseries Disable\+All\+Check\+Points} ()
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a396f18f384f1a386a87f8eedf5e0b0d4}\label{class_x_d_script_1_1_level_observer_a396f18f384f1a386a87f8eedf5e0b0d4}} 
+int {\bfseries Find\+Check\+Point\+Index} (ref Game\+Object entity)
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_aa9b312ae2d2eeb6f381b1d4ac079bb19}\label{class_x_d_script_1_1_level_observer_aa9b312ae2d2eeb6f381b1d4ac079bb19}} 
+void {\bfseries Reload\+Scene} ()
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_ac13f718a135ddf97e212a1441d78965a}\label{class_x_d_script_1_1_level_observer_ac13f718a135ddf97e212a1441d78965a}} 
+void {\bfseries Save\+Game} ()
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a220717060e6db30400c8ebef10af0eb2}\label{class_x_d_script_1_1_level_observer_a220717060e6db30400c8ebef10af0eb2}} 
+void {\bfseries New\+Gem\+Founded} (int index)
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_ac5cbb7da305c1fec724da8550231a2b1}\label{class_x_d_script_1_1_level_observer_ac5cbb7da305c1fec724da8550231a2b1}} 
+int {\bfseries Get\+Number\+Of\+Gem} ()
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a9cb74751d625722995dfae4022caea38}\label{class_x_d_script_1_1_level_observer_a9cb74751d625722995dfae4022caea38}} 
+void {\bfseries Complete\+Level} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a5fadbb9f9cfce37954f3aef93314d4d7}\label{class_x_d_script_1_1_level_observer_a5fadbb9f9cfce37954f3aef93314d4d7}} 
+\mbox{\hyperlink{class_x_d_script_1_1_abstract_mission}{Abstract\+Mission}} {\bfseries mission}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a403bdc7702ee4e28482defbcfa9a0726}\label{class_x_d_script_1_1_level_observer_a403bdc7702ee4e28482defbcfa9a0726}} 
+Game\+Object\mbox{[}$\,$\mbox{]} {\bfseries check\+Points}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_ab5f98fd53563ead8398307886afb5295}\label{class_x_d_script_1_1_level_observer_ab5f98fd53563ead8398307886afb5295}} 
+\mbox{\hyperlink{class_gem}{Gem}}\mbox{[}$\,$\mbox{]} {\bfseries gems} = new \mbox{\hyperlink{class_gem}{Gem}}\mbox{[}10\mbox{]}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a8455a0f1abea540637691fb9eb3708b8}\label{class_x_d_script_1_1_level_observer_a8455a0f1abea540637691fb9eb3708b8}} 
+\mbox{\hyperlink{class_gem}{Gem}}\mbox{[}$\,$\mbox{]} {\bfseries gems\+Error}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a58a783f743d6db2348a1415ee124e2ab}\label{class_x_d_script_1_1_level_observer_a58a783f743d6db2348a1415ee124e2ab}} 
+int\mbox{[}$\,$\mbox{]} {\bfseries gems\+Founded} = new int\mbox{[}10\mbox{]}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a5a58e8792872dbb9bd4820949cac77f1}\label{class_x_d_script_1_1_level_observer_a5a58e8792872dbb9bd4820949cac77f1}} 
+int {\bfseries current\+Checkpoint} = 0
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_a6a0a0b880f5b8e9f3ca7d564504b4f45}\label{class_x_d_script_1_1_level_observer_a6a0a0b880f5b8e9f3ca7d564504b4f45}} 
+string {\bfseries level\+Name}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_aee807d5d45bf419f6233a2250aee9b7e}\label{class_x_d_script_1_1_level_observer_aee807d5d45bf419f6233a2250aee9b7e}} 
+\mbox{\hyperlink{class_player_u_i}{Player\+UI}} {\bfseries canvas\+Ui}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_ab930f1ce6d53529f12144534ac131873}\label{class_x_d_script_1_1_level_observer_ab930f1ce6d53529f12144534ac131873}} 
+int {\bfseries next\+Level\+Index}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_x_d_script_1_1_level_observer_af0b5f6fa317e7d12d116ef514ef3a0ec}\label{class_x_d_script_1_1_level_observer_af0b5f6fa317e7d12d116ef514ef3a0ec}} 
+\index{XDScript.LevelObserver@{XDScript.LevelObserver}!OnNotify@{OnNotify}}
+\index{OnNotify@{OnNotify}!XDScript.LevelObserver@{XDScript.LevelObserver}}
+\doxysubsubsection{\texorpdfstring{OnNotify()}{OnNotify()}}
+{\footnotesize\ttfamily override void XDScript.\+Level\+Observer.\+On\+Notify (\begin{DoxyParamCaption}\item[{Game\+Object}]{entity,  }\item[{\mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}}}]{event\+To\+Trigger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{XDScript.\+Abstract\+Observer}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Observers/Level\+Observer.\+cs\end{DoxyCompactItemize}

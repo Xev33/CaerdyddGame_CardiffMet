@@ -1,0 +1,94 @@
+\hypertarget{class_moving_plateform}{}\doxysection{Moving\+Plateform Class Reference}
+\label{class_moving_plateform}\index{MovingPlateform@{MovingPlateform}}
+Inheritance diagram for Moving\+Plateform\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_moving_plateform}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_moving_plateform_aa2a97ce009f48474e0414f2dc3634233}{Trigger\+Actor}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a9527c5fceb90d259c86bf2604b043b76}\label{class_moving_plateform_a9527c5fceb90d259c86bf2604b043b76}} 
+void {\bfseries Awake} ()
+\item 
+\mbox{\Hypertarget{class_moving_plateform_acfa68dbb6e32c8312dc5293dfb043d38}\label{class_moving_plateform_acfa68dbb6e32c8312dc5293dfb043d38}} 
+void {\bfseries Update} ()
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a77e49f0e02618d7d87a04e603a75718f}\label{class_moving_plateform_a77e49f0e02618d7d87a04e603a75718f}} 
+IEnumerator {\bfseries Wait\+Before\+Move} ()
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a519c5a908d5078eb6bc4360cd2242d19}\label{class_moving_plateform_a519c5a908d5078eb6bc4360cd2242d19}} 
+IEnumerator {\bfseries Wait\+To\+Trigger} ()
+\item 
+\mbox{\Hypertarget{class_moving_plateform_afc09dfee697cd541269b7caba1a746f1}\label{class_moving_plateform_afc09dfee697cd541269b7caba1a746f1}} 
+void {\bfseries On\+Collision\+Enter} (Collision c)
+\item 
+\mbox{\Hypertarget{class_moving_plateform_aa28484fc60d1e4db75ab48134b5582d3}\label{class_moving_plateform_aa28484fc60d1e4db75ab48134b5582d3}} 
+void {\bfseries On\+Collision\+Exit} (Collision c)
+\item 
+\mbox{\Hypertarget{class_moving_plateform_ab3f2cc9d1fa570070b7b40ec3f29fcaa}\label{class_moving_plateform_ab3f2cc9d1fa570070b7b40ec3f29fcaa}} 
+IEnumerator {\bfseries Wait\+To\+Unparent} (Collision c)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_ae3845211526230b185b730d912ba1a6e}\label{class_moving_plateform_ae3845211526230b185b730d912ba1a6e}} 
+bool {\bfseries should\+Lerp} = false
+\item 
+\mbox{\Hypertarget{class_moving_plateform_ad0acfd48acca4eb1e984b14718c26a9e}\label{class_moving_plateform_ad0acfd48acca4eb1e984b14718c26a9e}} 
+float {\bfseries speed}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_ab6b3913ff6ab58cf06ca882860b6133c}\label{class_moving_plateform_ab6b3913ff6ab58cf06ca882860b6133c}} 
+float {\bfseries waiting\+Time}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a853242b1112193d07610dd47fd3de6b4}\label{class_moving_plateform_a853242b1112193d07610dd47fd3de6b4}} 
+float {\bfseries distance\+Min\+To\+Change}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a6f044dddeb927206720d68b2b62f1bd9}\label{class_moving_plateform_a6f044dddeb927206720d68b2b62f1bd9}} 
+float {\bfseries waiting\+Time\+To\+Trigger}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a955b8c16c4dc146379a333a467a3e817}\label{class_moving_plateform_a955b8c16c4dc146379a333a467a3e817}} 
+Game\+Object\mbox{[}$\,$\mbox{]} {\bfseries waypoints}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a1bf7cee6a893c3c6996633d7d59c02bf}\label{class_moving_plateform_a1bf7cee6a893c3c6996633d7d59c02bf}} 
+float {\bfseries time\+To\+Move} = 1f
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a37f9fd3a8255aafee6e42350f6487850}\label{class_moving_plateform_a37f9fd3a8255aafee6e42350f6487850}} 
+Vector3\mbox{[}$\,$\mbox{]} {\bfseries trans\+Point}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_aa14223b0991c9c3504502223219011ce}\label{class_moving_plateform_aa14223b0991c9c3504502223219011ce}} 
+Vector3 {\bfseries velocity} = Vector3.\+zero
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a4a1d383abff4d5c286cbf0080a906267}\label{class_moving_plateform_a4a1d383abff4d5c286cbf0080a906267}} 
+int {\bfseries current\+Point}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_ad951ed0d123a4ae465dda6364fa5791a}\label{class_moving_plateform_ad951ed0d123a4ae465dda6364fa5791a}} 
+int {\bfseries last\+Point}
+\item 
+\mbox{\Hypertarget{class_moving_plateform_a668202683cc3ff55c6e6ca0a6e13ceb6}\label{class_moving_plateform_a668202683cc3ff55c6e6ca0a6e13ceb6}} 
+bool {\bfseries is\+Trigger} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_moving_plateform_aa2a97ce009f48474e0414f2dc3634233}\label{class_moving_plateform_aa2a97ce009f48474e0414f2dc3634233}} 
+\index{MovingPlateform@{MovingPlateform}!TriggerActor@{TriggerActor}}
+\index{TriggerActor@{TriggerActor}!MovingPlateform@{MovingPlateform}}
+\doxysubsubsection{\texorpdfstring{TriggerActor()}{TriggerActor()}}
+{\footnotesize\ttfamily void Moving\+Plateform.\+Trigger\+Actor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_i_trigger_actor}{ITrigger\+Actor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Gameplay\+Bricks/Moving\+Plateform.\+cs\end{DoxyCompactItemize}
