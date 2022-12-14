@@ -1,0 +1,94 @@
+\hypertarget{class_gem}{}\doxysection{Gem Class Reference}
+\label{class_gem}\index{Gem@{Gem}}
+Inheritance diagram for Gem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_gem}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_gem_ab08e2b826d2d44f13af347bac056dc5c}\label{class_gem_ab08e2b826d2d44f13af347bac056dc5c}} 
+void {\bfseries Update\+Material} (int should\+Be\+Transparent)
+\item 
+void \mbox{\hyperlink{class_gem_a20fa8f0bb075425bef36815b357580bd}{Notify\+Observers}} (Game\+Object entity, \mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}} event\+To\+Trigger)
+\item 
+void \mbox{\hyperlink{class_gem_a382691f6fde5ad57158d305ec67f880a}{Add\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\item 
+void \mbox{\hyperlink{class_gem_a617b54095161f62c827ccb661b1b9f3c}{Remove\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_gem_af9eb92cfef1e68c055259b115ed8f2db}\label{class_gem_af9eb92cfef1e68c055259b115ed8f2db}} 
+int {\bfseries gem\+ID}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_gem_abf3fee6e20607d32e29b09fab358ad3e}\label{class_gem_abf3fee6e20607d32e29b09fab358ad3e}} 
+void {\bfseries Awake} ()
+\item 
+\mbox{\Hypertarget{class_gem_a4dfbcf95057a4fb67d3365e15841b5c4}\label{class_gem_a4dfbcf95057a4fb67d3365e15841b5c4}} 
+void {\bfseries On\+Trigger\+Enter} (Collider col)
+\item 
+\mbox{\Hypertarget{class_gem_ae9490d7087eb0db4850b33ec6c62dc02}\label{class_gem_ae9490d7087eb0db4850b33ec6c62dc02}} 
+IEnumerator {\bfseries Gem\+Collected} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_gem_a1f4efece25dd1e9bd3a8f194c714331c}\label{class_gem_a1f4efece25dd1e9bd3a8f194c714331c}} 
+Material {\bfseries not\+Founded\+Mat}
+\item 
+\mbox{\Hypertarget{class_gem_a5833ec0a190a75ab4d608c4024a76d38}\label{class_gem_a5833ec0a190a75ab4d608c4024a76d38}} 
+Material {\bfseries already\+Founded\+Mat}
+\item 
+\mbox{\Hypertarget{class_gem_a72ea9266d9563ab219bd1115ca24ba3c}\label{class_gem_a72ea9266d9563ab219bd1115ca24ba3c}} 
+Mesh\+Renderer {\bfseries current\+Mat}
+\item 
+\mbox{\Hypertarget{class_gem_a0c6ca5921b9aebc782b19b6b01e61e53}\label{class_gem_a0c6ca5921b9aebc782b19b6b01e61e53}} 
+float {\bfseries vanishing\+Duration} = 1.\+0f
+\item 
+\mbox{\Hypertarget{class_gem_aa9261aae68e23b7a105b8b705487e2f5}\label{class_gem_aa9261aae68e23b7a105b8b705487e2f5}} 
+\mbox{\hyperlink{class_x_d_script_1_1_subject}{Subject}} {\bfseries subject} = new \mbox{\hyperlink{class_x_d_script_1_1_subject}{Subject}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_gem_a382691f6fde5ad57158d305ec67f880a}\label{class_gem_a382691f6fde5ad57158d305ec67f880a}} 
+\index{Gem@{Gem}!AddObserver@{AddObserver}}
+\index{AddObserver@{AddObserver}!Gem@{Gem}}
+\doxysubsubsection{\texorpdfstring{AddObserver()}{AddObserver()}}
+{\footnotesize\ttfamily void Gem.\+Add\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_gem_a20fa8f0bb075425bef36815b357580bd}\label{class_gem_a20fa8f0bb075425bef36815b357580bd}} 
+\index{Gem@{Gem}!NotifyObservers@{NotifyObservers}}
+\index{NotifyObservers@{NotifyObservers}!Gem@{Gem}}
+\doxysubsubsection{\texorpdfstring{NotifyObservers()}{NotifyObservers()}}
+{\footnotesize\ttfamily void Gem.\+Notify\+Observers (\begin{DoxyParamCaption}\item[{Game\+Object}]{entity,  }\item[{\mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}}}]{event\+To\+Trigger }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_gem_a617b54095161f62c827ccb661b1b9f3c}\label{class_gem_a617b54095161f62c827ccb661b1b9f3c}} 
+\index{Gem@{Gem}!RemoveObserver@{RemoveObserver}}
+\index{RemoveObserver@{RemoveObserver}!Gem@{Gem}}
+\doxysubsubsection{\texorpdfstring{RemoveObserver()}{RemoveObserver()}}
+{\footnotesize\ttfamily void Gem.\+Remove\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Gameplay\+Bricks/Gem.\+cs\end{DoxyCompactItemize}

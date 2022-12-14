@@ -1,0 +1,92 @@
+\hypertarget{class_flying_enemy}{}\doxysection{Flying\+Enemy Class Reference}
+\label{class_flying_enemy}\index{FlyingEnemy@{FlyingEnemy}}
+Inheritance diagram for Flying\+Enemy\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_flying_enemy}
+\end{center}
+\end{figure}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_flying_enemy_ab31f5086f6661f47e5da605294c0378e}{Awake}} ()
+\item 
+override void \mbox{\hyperlink{class_flying_enemy_ad2441a7a7a78709de9a8d9b6bda61f74}{On\+Trigger\+Enter}} (Collider other)
+\item 
+override void \mbox{\hyperlink{class_flying_enemy_a7386ce517dcbb2345129a554144dea77}{Kill\+Enemy}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_flying_enemy_a08d8955928bef2ee2a92f9b3b57733e0}\label{class_flying_enemy_a08d8955928bef2ee2a92f9b3b57733e0}} 
+void {\bfseries Update} ()
+\item 
+\mbox{\Hypertarget{class_flying_enemy_ad0248755e71d78064a07c03c56bce5b5}\label{class_flying_enemy_ad0248755e71d78064a07c03c56bce5b5}} 
+IEnumerator {\bfseries Wait\+Before\+Move} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_flying_enemy_a2d531a1ee66ab0c4c9a7d4c2d814f56c}\label{class_flying_enemy_a2d531a1ee66ab0c4c9a7d4c2d814f56c}} 
+float {\bfseries waiting\+Time}
+\item 
+\mbox{\Hypertarget{class_flying_enemy_acfcea28bf8ab3b0e18bdd2f067b88acd}\label{class_flying_enemy_acfcea28bf8ab3b0e18bdd2f067b88acd}} 
+float {\bfseries time\+To\+Move} = 1.\+5f
+\item 
+\mbox{\Hypertarget{class_flying_enemy_a4c141d777ebee6bce27c61285b7bd805}\label{class_flying_enemy_a4c141d777ebee6bce27c61285b7bd805}} 
+float {\bfseries distance\+Min\+To\+Change}
+\item 
+\mbox{\Hypertarget{class_flying_enemy_ae94d290777742cd11af2e296d8e0e6c3}\label{class_flying_enemy_ae94d290777742cd11af2e296d8e0e6c3}} 
+Game\+Object\mbox{[}$\,$\mbox{]} {\bfseries waypoints}
+\item 
+\mbox{\Hypertarget{class_flying_enemy_abe788216c458e5105f298ba40bd3d31e}\label{class_flying_enemy_abe788216c458e5105f298ba40bd3d31e}} 
+bool {\bfseries should\+Look\+At\+Player} = false
+\item 
+\mbox{\Hypertarget{class_flying_enemy_aa7f6ad31111356f98f049679b6140639}\label{class_flying_enemy_aa7f6ad31111356f98f049679b6140639}} 
+Vector3\mbox{[}$\,$\mbox{]} {\bfseries trans\+Point}
+\item 
+\mbox{\Hypertarget{class_flying_enemy_aeed62a912ddf34678e4bd398fb910ec2}\label{class_flying_enemy_aeed62a912ddf34678e4bd398fb910ec2}} 
+Vector3 {\bfseries velocity}
+\item 
+\mbox{\Hypertarget{class_flying_enemy_adcb74eac161c243a9572bda97dbdfd77}\label{class_flying_enemy_adcb74eac161c243a9572bda97dbdfd77}} 
+int {\bfseries current\+Point}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_flying_enemy_ab31f5086f6661f47e5da605294c0378e}\label{class_flying_enemy_ab31f5086f6661f47e5da605294c0378e}} 
+\index{FlyingEnemy@{FlyingEnemy}!Awake@{Awake}}
+\index{Awake@{Awake}!FlyingEnemy@{FlyingEnemy}}
+\doxysubsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily override void Flying\+Enemy.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_abstract_enemy}{Abstract\+Enemy}}.
+
+\mbox{\Hypertarget{class_flying_enemy_a7386ce517dcbb2345129a554144dea77}\label{class_flying_enemy_a7386ce517dcbb2345129a554144dea77}} 
+\index{FlyingEnemy@{FlyingEnemy}!KillEnemy@{KillEnemy}}
+\index{KillEnemy@{KillEnemy}!FlyingEnemy@{FlyingEnemy}}
+\doxysubsubsection{\texorpdfstring{KillEnemy()}{KillEnemy()}}
+{\footnotesize\ttfamily override void Flying\+Enemy.\+Kill\+Enemy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_abstract_enemy}{Abstract\+Enemy}}.
+
+\mbox{\Hypertarget{class_flying_enemy_ad2441a7a7a78709de9a8d9b6bda61f74}\label{class_flying_enemy_ad2441a7a7a78709de9a8d9b6bda61f74}} 
+\index{FlyingEnemy@{FlyingEnemy}!OnTriggerEnter@{OnTriggerEnter}}
+\index{OnTriggerEnter@{OnTriggerEnter}!FlyingEnemy@{FlyingEnemy}}
+\doxysubsubsection{\texorpdfstring{OnTriggerEnter()}{OnTriggerEnter()}}
+{\footnotesize\ttfamily override void Flying\+Enemy.\+On\+Trigger\+Enter (\begin{DoxyParamCaption}\item[{Collider}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_abstract_bumper}{Abstract\+Bumper}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Gameplay\+Bricks/Flying\+Enemy.\+cs\end{DoxyCompactItemize}

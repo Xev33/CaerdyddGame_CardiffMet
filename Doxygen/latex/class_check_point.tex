@@ -1,0 +1,88 @@
+\hypertarget{class_check_point}{}\doxysection{Check\+Point Class Reference}
+\label{class_check_point}\index{CheckPoint@{CheckPoint}}
+Inheritance diagram for Check\+Point\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_check_point}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_check_point_a6025e5482466ae9d0df3efa3b1e4f5b1}\label{class_check_point_a6025e5482466ae9d0df3efa3b1e4f5b1}} 
+void {\bfseries Turn\+On} ()
+\item 
+\mbox{\Hypertarget{class_check_point_ac93af5d73f55d59080d79b888e2ac57a}\label{class_check_point_ac93af5d73f55d59080d79b888e2ac57a}} 
+void {\bfseries Turn\+Off} ()
+\item 
+void \mbox{\hyperlink{class_check_point_a3167f5d86a82feb52ab5046edbd47677}{Notify\+Observers}} (Game\+Object entity, \mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}} event\+To\+Trigger)
+\item 
+void \mbox{\hyperlink{class_check_point_a7c44e5087aa4c4f181b8e867d387c35a}{Add\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\item 
+void \mbox{\hyperlink{class_check_point_abd872f46d70fa3ebd779941438d9a575}{Remove\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_check_point_a619e304f54b7c695633045b31f1f2076}\label{class_check_point_a619e304f54b7c695633045b31f1f2076}} 
+bool {\bfseries is\+On} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_check_point_a500727d5a9fa57adb07f631229f26c5d}\label{class_check_point_a500727d5a9fa57adb07f631229f26c5d}} 
+void {\bfseries Start} ()
+\item 
+\mbox{\Hypertarget{class_check_point_accda0f0c49b2390cc2570efe8fb60c18}\label{class_check_point_accda0f0c49b2390cc2570efe8fb60c18}} 
+void {\bfseries On\+Trigger\+Enter} (Collider col)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_check_point_a46482300ebc36b499db00b5aaedb7686}\label{class_check_point_a46482300ebc36b499db00b5aaedb7686}} 
+\mbox{\hyperlink{class_x_d_script_1_1_subject}{Subject}} {\bfseries subject} = new \mbox{\hyperlink{class_x_d_script_1_1_subject}{Subject}}()
+\item 
+\mbox{\Hypertarget{class_check_point_a71b91a993a299ea8654f9324b2d1abbd}\label{class_check_point_a71b91a993a299ea8654f9324b2d1abbd}} 
+Material {\bfseries material\+Off}
+\item 
+\mbox{\Hypertarget{class_check_point_a38a29ee0b9ab1d055b1cd9d0384437df}\label{class_check_point_a38a29ee0b9ab1d055b1cd9d0384437df}} 
+Material {\bfseries material\+On}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_check_point_a7c44e5087aa4c4f181b8e867d387c35a}\label{class_check_point_a7c44e5087aa4c4f181b8e867d387c35a}} 
+\index{CheckPoint@{CheckPoint}!AddObserver@{AddObserver}}
+\index{AddObserver@{AddObserver}!CheckPoint@{CheckPoint}}
+\doxysubsubsection{\texorpdfstring{AddObserver()}{AddObserver()}}
+{\footnotesize\ttfamily void Check\+Point.\+Add\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_check_point_a3167f5d86a82feb52ab5046edbd47677}\label{class_check_point_a3167f5d86a82feb52ab5046edbd47677}} 
+\index{CheckPoint@{CheckPoint}!NotifyObservers@{NotifyObservers}}
+\index{NotifyObservers@{NotifyObservers}!CheckPoint@{CheckPoint}}
+\doxysubsubsection{\texorpdfstring{NotifyObservers()}{NotifyObservers()}}
+{\footnotesize\ttfamily void Check\+Point.\+Notify\+Observers (\begin{DoxyParamCaption}\item[{Game\+Object}]{entity,  }\item[{\mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}}}]{event\+To\+Trigger }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_check_point_abd872f46d70fa3ebd779941438d9a575}\label{class_check_point_abd872f46d70fa3ebd779941438d9a575}} 
+\index{CheckPoint@{CheckPoint}!RemoveObserver@{RemoveObserver}}
+\index{RemoveObserver@{RemoveObserver}!CheckPoint@{CheckPoint}}
+\doxysubsubsection{\texorpdfstring{RemoveObserver()}{RemoveObserver()}}
+{\footnotesize\ttfamily void Check\+Point.\+Remove\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Gameplay\+Bricks/Check\+Point.\+cs\end{DoxyCompactItemize}

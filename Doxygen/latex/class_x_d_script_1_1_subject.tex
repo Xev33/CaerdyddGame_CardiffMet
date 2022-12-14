@@ -1,0 +1,69 @@
+\hypertarget{class_x_d_script_1_1_subject}{}\doxysection{XDScript.\+Subject Class Reference}
+\label{class_x_d_script_1_1_subject}\index{XDScript.Subject@{XDScript.Subject}}
+
+
+A subject can have Observer to notify any event and trigger them   
+
+
+Inheritance diagram for XDScript.\+Subject\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_x_d_script_1_1_subject}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_x_d_script_1_1_subject_a4bd53b15d6ab8913f32d72e1ba3df942}{Notify\+Observers}} (Game\+Object entity, \mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}} event\+To\+Trigger)
+\item 
+void \mbox{\hyperlink{class_x_d_script_1_1_subject_aa2ac2646b3bb18a135207314852d7abc}{Add\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\item 
+void \mbox{\hyperlink{class_x_d_script_1_1_subject_ac6eafd6929f80cac8015540193d0db52}{Remove\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_x_d_script_1_1_subject_a3fc672811fb42764fedb395466a22333}\label{class_x_d_script_1_1_subject_a3fc672811fb42764fedb395466a22333}} 
+List$<$ \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} $>$ {\bfseries \+\_\+observers} = new List$<$\mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}$>$()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A subject can have Observer to notify any event and trigger them  
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_x_d_script_1_1_subject_aa2ac2646b3bb18a135207314852d7abc}\label{class_x_d_script_1_1_subject_aa2ac2646b3bb18a135207314852d7abc}} 
+\index{XDScript.Subject@{XDScript.Subject}!AddObserver@{AddObserver}}
+\index{AddObserver@{AddObserver}!XDScript.Subject@{XDScript.Subject}}
+\doxysubsubsection{\texorpdfstring{AddObserver()}{AddObserver()}}
+{\footnotesize\ttfamily void XDScript.\+Subject.\+Add\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_x_d_script_1_1_subject_a4bd53b15d6ab8913f32d72e1ba3df942}\label{class_x_d_script_1_1_subject_a4bd53b15d6ab8913f32d72e1ba3df942}} 
+\index{XDScript.Subject@{XDScript.Subject}!NotifyObservers@{NotifyObservers}}
+\index{NotifyObservers@{NotifyObservers}!XDScript.Subject@{XDScript.Subject}}
+\doxysubsubsection{\texorpdfstring{NotifyObservers()}{NotifyObservers()}}
+{\footnotesize\ttfamily void XDScript.\+Subject.\+Notify\+Observers (\begin{DoxyParamCaption}\item[{Game\+Object}]{entity,  }\item[{\mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}}}]{event\+To\+Trigger }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_x_d_script_1_1_subject_ac6eafd6929f80cac8015540193d0db52}\label{class_x_d_script_1_1_subject_ac6eafd6929f80cac8015540193d0db52}} 
+\index{XDScript.Subject@{XDScript.Subject}!RemoveObserver@{RemoveObserver}}
+\index{RemoveObserver@{RemoveObserver}!XDScript.Subject@{XDScript.Subject}}
+\doxysubsubsection{\texorpdfstring{RemoveObserver()}{RemoveObserver()}}
+{\footnotesize\ttfamily void XDScript.\+Subject.\+Remove\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Interfaces/ISubject.\+cs\end{DoxyCompactItemize}

@@ -10,8 +10,9 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
     [SerializeField] private float distanceMinToChange;
     [SerializeField] private float waitingTimeToTrigger;
     [SerializeField] private GameObject[] waypoints;
+    [SerializeField] private float timeToMove = 1f;
     private Vector3[] transPoint;
-    private Vector3 velocity;
+    private Vector3 velocity = Vector3.zero;
     private int currentPoint;
     private int lastPoint;
     private bool isTrigger = false;
@@ -40,7 +41,10 @@ public class MovingPlateform : MonoBehaviour, ITriggerActor
             StartCoroutine(WaitBeforeMove());
         }
         if (shouldLerp == true)
-            transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
+        {
+            transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, timeToMove);
+            //transform.position = Vector3.SmoothDamp(this.transform.position, transPoint[currentPoint], ref velocity, speed * Time.deltaTime);
+        }
         else
             transform.position = Vector3.MoveTowards(this.transform.position, transPoint[currentPoint], speed * Time.deltaTime);
     }

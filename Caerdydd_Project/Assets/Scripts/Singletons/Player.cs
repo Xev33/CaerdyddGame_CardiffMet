@@ -36,6 +36,8 @@ public class Player : Singleton<Player>, ISubject
     private Rigidbody body;
     private Animator anim;
     private bool shouldNotMove = false;
+    private bool isGodModeEnable = false;
+    private bool canToggleGodMode = false;
     [HideInInspector] public bool isSpinning = false;
 
     public int hp = 2;
@@ -49,7 +51,10 @@ public class Player : Singleton<Player>, ISubject
     public int collectibleNbr = 0;
 
     [SerializeField] private GameObject dragonMesh;
+    [SerializeField] private UnityEngine.UI.Image GodModeImage;
+    [SerializeField] private GameObject GodModeTxt;
     [SerializeField] private PlayerUI canvas;
+    [SerializeField] private PopUpController GodModeCanvas;
     [SerializeField] private float jumpVelocity = 10.0f;
     [SerializeField] private float invincibilityTime = 5f;
     [SerializeField] private float fallingGlidingSpeed;
@@ -68,6 +73,7 @@ public class Player : Singleton<Player>, ISubject
     #region Unity functions
     void Start()
     {
+        canToggleGodMode = true;
         glidingFallingSpeed = -1.0f;
         maxSpeed = speed;
         body = GetComponent<Rigidbody>();
@@ -96,6 +102,8 @@ public class Player : Singleton<Player>, ISubject
             TakeHit(1);
         if (Input.GetKeyDown(KeyCode.K))
             Heal();
+        if (Input.GetKeyDown(KeyCode.M) && canToggleGodMode == true)
+            StartCoroutine(ToggleGodMode());
         currentState.HandleInput(this);
         currentState.StateUpdate(this);
 
@@ -210,7 +218,7 @@ public class Player : Singleton<Player>, ISubject
 
     public void TakeHit(int damage)
     {
-        if ((isInvicible == true && damage == 1) || hp <= 0)
+        if ((isInvicible == true && damage == 1) || hp <= 0 || (isGodModeEnable == true && damage == 1))
             return;
         //if (damage == 1 && isSpinning == true)
         //    return;
@@ -268,9 +276,31 @@ public class Player : Singleton<Player>, ISubject
 
     #region Utils
 
+    IEnumerator ToggleGodMode()
+    {
+        canToggleGodMode = false;
+        if (isGodModeEnable == true)
+        {
+            isGodModeEnable = false;
+            GodModeCanvas.CloseAllPopUps();
+        }
+        else
+        {
+            isGodModeEnable = true;
+            GodModeCanvas.OpenAllPopUps();
+        }
+        yield return new WaitForSeconds(0.6f);
+        canToggleGodMode = true;
+    }
+
     IEnumerator OpenUI()
     {
-        yield return new WaitForSeconds(1f);
+        canToggleGodMode = false;
+        yield return new WaitForSeconds(0.6f);
+        GodModeImage.enabled = true;
+        GodModeTxt.SetActive(true);
+        canToggleGodMode = true;
+        yield return new WaitForSeconds(0.4f);
         canvas.GetHealed(1);
         canvas.GetHealed(2);
         canvas.UpdateUI();

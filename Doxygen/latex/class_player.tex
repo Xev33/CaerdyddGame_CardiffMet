@@ -1,0 +1,253 @@
+\hypertarget{class_player}{}\doxysection{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+
+
+Fake \mbox{\hyperlink{class_player}{Player}} fo testing   
+
+
+Inheritance diagram for Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_a3fdebad803b97f4643696b3421be2195}\label{class_player_a3fdebad803b97f4643696b3421be2195}} 
+void {\bfseries Move} ()
+\item 
+\mbox{\Hypertarget{class_player_a689d6b007b09f694a246fe806bef7d5f}\label{class_player_a689d6b007b09f694a246fe806bef7d5f}} 
+void {\bfseries Jump} ()
+\item 
+\mbox{\Hypertarget{class_player_a7006afdffc31a0c1f2da4c7a22d1bd81}\label{class_player_a7006afdffc31a0c1f2da4c7a22d1bd81}} 
+void {\bfseries Spin\+Jump} (float bump\+Velocity)
+\item 
+\mbox{\Hypertarget{class_player_a10e6d622221fae4a077ece0eec19063b}\label{class_player_a10e6d622221fae4a077ece0eec19063b}} 
+void {\bfseries Glide} ()
+\item 
+\mbox{\Hypertarget{class_player_ae226aa38575cfd522ec4da3be191a5b2}\label{class_player_ae226aa38575cfd522ec4da3be191a5b2}} 
+void {\bfseries Hover} ()
+\item 
+\mbox{\Hypertarget{class_player_a91bc4a90bbe2f8ae151fefbcbe5f0d35}\label{class_player_a91bc4a90bbe2f8ae151fefbcbe5f0d35}} 
+void {\bfseries Take\+Hit} (int damage)
+\item 
+\mbox{\Hypertarget{class_player_af7786eb5508f7ef38c5c02929246b2d1}\label{class_player_af7786eb5508f7ef38c5c02929246b2d1}} 
+void {\bfseries Heal} ()
+\item 
+\mbox{\Hypertarget{class_player_a0a5c43a5e1599bb89d97af42c4175af5}\label{class_player_a0a5c43a5e1599bb89d97af42c4175af5}} 
+void {\bfseries Collect\+Petal} ()
+\item 
+\mbox{\Hypertarget{class_player_acca8d359681d98ddbbe2386235ed9e0b}\label{class_player_acca8d359681d98ddbbe2386235ed9e0b}} 
+bool {\bfseries Is\+Grounded} ()
+\item 
+\mbox{\Hypertarget{class_player_af104bd1a0be5f32d641a3c7801af273e}\label{class_player_af104bd1a0be5f32d641a3c7801af273e}} 
+void {\bfseries Launch\+Given\+Animation} (Animation\+To\+Launch anim\+To\+Launch)
+\item 
+void \mbox{\hyperlink{class_player_a68c67e53c587f050f860771c2dce8064}{Notify\+Observers}} (Game\+Object entity, \mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}} event\+To\+Trigger)
+\item 
+void \mbox{\hyperlink{class_player_a84646df880be590aaad80267a71cb154}{Add\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\item 
+void \mbox{\hyperlink{class_player_ae3a84fe062760f3ac50e540225aaad0a}{Remove\+Observer}} (ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}} observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_abd2291a934964b32e9bc06a7738042d3}\label{class_player_abd2291a934964b32e9bc06a7738042d3}} 
+float {\bfseries speed} = 10.\+0f
+\item 
+\mbox{\Hypertarget{class_player_a28b98e6712f03b881b07792d3c457f65}\label{class_player_a28b98e6712f03b881b07792d3c457f65}} 
+float {\bfseries rotation\+Speed} = 10.\+0f
+\item 
+\mbox{\Hypertarget{class_player_a0382549beda8956ddba26145f976443e}\label{class_player_a0382549beda8956ddba26145f976443e}} 
+float {\bfseries hovering\+Speed\+Divider}
+\item 
+\mbox{\Hypertarget{class_player_ac688a67e19e41c4881b831cea0eeab4a}\label{class_player_ac688a67e19e41c4881b831cea0eeab4a}} 
+Game\+Object {\bfseries self\+Cam\+Anchor}
+\item 
+\mbox{\Hypertarget{class_player_a9940e5d3c8903e0df2277ca947843fd5}\label{class_player_a9940e5d3c8903e0df2277ca947843fd5}} 
+bool {\bfseries is\+Invicible} = false
+\item 
+\mbox{\Hypertarget{class_player_af98ce79c5da4b3ecd777698325c59792}\label{class_player_af98ce79c5da4b3ecd777698325c59792}} 
+bool {\bfseries is\+On\+Moving\+Platform} = false
+\item 
+\mbox{\Hypertarget{class_player_aeb49f43f1ede71106350b2480c38c2d1}\label{class_player_aeb49f43f1ede71106350b2480c38c2d1}} 
+float {\bfseries max\+Speed}
+\item 
+\mbox{\Hypertarget{class_player_aa949071720821237cd9daca22fb8d927}\label{class_player_aa949071720821237cd9daca22fb8d927}} 
+float {\bfseries spin\+Speed} = 1700.\+0f
+\item 
+\mbox{\Hypertarget{class_player_a51d7a02ff0b91cc94e575dee22cfc353}\label{class_player_a51d7a02ff0b91cc94e575dee22cfc353}} 
+bool {\bfseries is\+Spinning} = false
+\item 
+\mbox{\Hypertarget{class_player_a9159a0bdf10845c484a41823fe3c101e}\label{class_player_a9159a0bdf10845c484a41823fe3c101e}} 
+int {\bfseries hp} = 2
+\item 
+\mbox{\Hypertarget{class_player_a68a3285ff884a320bdf3a5f177daac5b}\label{class_player_a68a3285ff884a320bdf3a5f177daac5b}} 
+float {\bfseries gliding\+Falling\+Speed}
+\item 
+\mbox{\Hypertarget{class_player_aad9bdd62d48c7c84dfc21c829e0f0e98}\label{class_player_aad9bdd62d48c7c84dfc21c829e0f0e98}} 
+int {\bfseries collectible\+Nbr} = 0
+\item 
+\mbox{\Hypertarget{class_player_aaf504f0cc6d345940e8e16877f054089}\label{class_player_aaf504f0cc6d345940e8e16877f054089}} 
+\mbox{\hyperlink{interface_x_d_script_1_1_i_player_state}{IPlayer\+State}} {\bfseries current\+State}
+\item 
+\mbox{\Hypertarget{class_player_a991837ac3f8f0f16d1608eddf159136c}\label{class_player_a991837ac3f8f0f16d1608eddf159136c}} 
+\mbox{\hyperlink{class_state___standing}{State\+\_\+\+Standing}} {\bfseries standing\+State}
+\item 
+\mbox{\Hypertarget{class_player_affc9c1bc01262e9e2f69b5e5fb3a74c5}\label{class_player_affc9c1bc01262e9e2f69b5e5fb3a74c5}} 
+\mbox{\hyperlink{class_state___jumping}{State\+\_\+\+Jumping}} {\bfseries jump\+State}
+\item 
+\mbox{\Hypertarget{class_player_a62756de2679a21084906201d8cb23be0}\label{class_player_a62756de2679a21084906201d8cb23be0}} 
+\mbox{\hyperlink{class_state___gliding}{State\+\_\+\+Gliding}} {\bfseries gliding\+State}
+\item 
+\mbox{\Hypertarget{class_player_aa0eb40b9697f35271dc4c58045d58971}\label{class_player_aa0eb40b9697f35271dc4c58045d58971}} 
+\mbox{\hyperlink{class_state___hovering}{State\+\_\+\+Hovering}} {\bfseries hovering\+State}
+\item 
+\mbox{\Hypertarget{class_player_a6c5e90bf96fb8a9a2a2ffcd0522da343}\label{class_player_a6c5e90bf96fb8a9a2a2ffcd0522da343}} 
+\mbox{\hyperlink{class_state___disable}{State\+\_\+\+Disable}} {\bfseries disable\+State}
+\item 
+\mbox{\Hypertarget{class_player_a7316ef5bb96336abfba275dcd63906ce}\label{class_player_a7316ef5bb96336abfba275dcd63906ce}} 
+\mbox{\hyperlink{class_camera_zone}{Camera\+Zone}} {\bfseries camera\+Zone}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_a1a09a3ded16ac1646f6bdd4f25fe0ddd}\label{class_player_a1a09a3ded16ac1646f6bdd4f25fe0ddd}} 
+void {\bfseries Start} ()
+\item 
+\mbox{\Hypertarget{class_player_aace80372e18e32fe177e295fe5d93ba8}\label{class_player_aace80372e18e32fe177e295fe5d93ba8}} 
+void {\bfseries Update} ()
+\item 
+\mbox{\Hypertarget{class_player_abd430d273ef011a22a6c63eee5067751}\label{class_player_abd430d273ef011a22a6c63eee5067751}} 
+void {\bfseries On\+Collision\+Enter} (Collision col)
+\item 
+\mbox{\Hypertarget{class_player_a7ab21a428f37d5ba1bb3902e5fce3854}\label{class_player_a7ab21a428f37d5ba1bb3902e5fce3854}} 
+IEnumerator {\bfseries Player\+Dies} ()
+\item 
+\mbox{\Hypertarget{class_player_a3c768e6fa6835125452c4d22b6632eeb}\label{class_player_a3c768e6fa6835125452c4d22b6632eeb}} 
+IEnumerator {\bfseries Toggle\+God\+Mode} ()
+\item 
+\mbox{\Hypertarget{class_player_ac5a728917cfcf86213e4b81e55521c4a}\label{class_player_ac5a728917cfcf86213e4b81e55521c4a}} 
+IEnumerator {\bfseries Open\+UI} ()
+\item 
+\mbox{\Hypertarget{class_player_acdc4fc049ba551ac275c1c464d754442}\label{class_player_acdc4fc049ba551ac275c1c464d754442}} 
+IEnumerator {\bfseries Get\+Invicible\+Frame} ()
+\item 
+\mbox{\Hypertarget{class_player_a596361819f568f5addff506bb46e5998}\label{class_player_a596361819f568f5addff506bb46e5998}} 
+void {\bfseries Rotate\+Mesh} ()
+\item 
+\mbox{\Hypertarget{class_player_a9fce84b66c8e53290aeaa71c2a79e261}\label{class_player_a9fce84b66c8e53290aeaa71c2a79e261}} 
+IEnumerator {\bfseries Spin\+Player} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_aa57aa17355818ab210d8890edcaf1b4e}\label{class_player_aa57aa17355818ab210d8890edcaf1b4e}} 
+\mbox{\hyperlink{class_x_d_script_1_1_subject}{Subject}} {\bfseries subject} = new \mbox{\hyperlink{class_x_d_script_1_1_subject}{Subject}}()
+\item 
+\mbox{\Hypertarget{class_player_acfe7b6dde12fbd2775cf18aaf51c195e}\label{class_player_acfe7b6dde12fbd2775cf18aaf51c195e}} 
+\mbox{\hyperlink{class_x_d_script_1_1_input_handler}{Input\+Handler}} {\bfseries input\+Handler}
+\item 
+\mbox{\Hypertarget{class_player_aa9f04405209402be92a651f347266170}\label{class_player_aa9f04405209402be92a651f347266170}} 
+Rigidbody {\bfseries body}
+\item 
+\mbox{\Hypertarget{class_player_a70b6b51d74cd56fa84d032a4024792e6}\label{class_player_a70b6b51d74cd56fa84d032a4024792e6}} 
+Animator {\bfseries anim}
+\item 
+\mbox{\Hypertarget{class_player_a9ec3efd52b5a3aab0627d0139434daae}\label{class_player_a9ec3efd52b5a3aab0627d0139434daae}} 
+bool {\bfseries should\+Not\+Move} = false
+\item 
+\mbox{\Hypertarget{class_player_a38d0ff00bf3e3bb89eb1190cae416fed}\label{class_player_a38d0ff00bf3e3bb89eb1190cae416fed}} 
+bool {\bfseries is\+God\+Mode\+Enable} = false
+\item 
+\mbox{\Hypertarget{class_player_affdc34b7ed51abce91c16afa28fb6c93}\label{class_player_affdc34b7ed51abce91c16afa28fb6c93}} 
+bool {\bfseries can\+Toggle\+God\+Mode} = false
+\item 
+\mbox{\Hypertarget{class_player_a71d3194404063ec44a91a42b271bdbf9}\label{class_player_a71d3194404063ec44a91a42b271bdbf9}} 
+int {\bfseries idle\+State} = 0
+\item 
+\mbox{\Hypertarget{class_player_a47a9975ebf8474660c065a382d9ffd44}\label{class_player_a47a9975ebf8474660c065a382d9ffd44}} 
+float {\bfseries last\+Direction} = 1f
+\item 
+\mbox{\Hypertarget{class_player_a60d8e423918c50cb56f4a0036129f91d}\label{class_player_a60d8e423918c50cb56f4a0036129f91d}} 
+float {\bfseries sleep\+Timer} = 0f
+\item 
+\mbox{\Hypertarget{class_player_a845a38b5d9433b086ed7c9ced70677c3}\label{class_player_a845a38b5d9433b086ed7c9ced70677c3}} 
+float {\bfseries direction} = 0f
+\item 
+\mbox{\Hypertarget{class_player_ab72565e5e391531df384389316137a76}\label{class_player_ab72565e5e391531df384389316137a76}} 
+float {\bfseries time\+Befor\+Idle} = 5f
+\item 
+\mbox{\Hypertarget{class_player_a3fa7a101bd3fe87a356fee2d4d7ac3a2}\label{class_player_a3fa7a101bd3fe87a356fee2d4d7ac3a2}} 
+float {\bfseries dist\+To\+Ground} = 1.\+0f
+\item 
+\mbox{\Hypertarget{class_player_afd9a9048f6b09be266d37aa53caf3ad1}\label{class_player_afd9a9048f6b09be266d37aa53caf3ad1}} 
+Game\+Object {\bfseries dragon\+Mesh}
+\item 
+\mbox{\Hypertarget{class_player_abbd8f3f0d0dfe41970ee4a5535c06a6d}\label{class_player_abbd8f3f0d0dfe41970ee4a5535c06a6d}} 
+Unity\+Engine.\+UI.\+Image {\bfseries God\+Mode\+Image}
+\item 
+\mbox{\Hypertarget{class_player_a5ba6b7a6f9cd375d05b5dda0c3075abd}\label{class_player_a5ba6b7a6f9cd375d05b5dda0c3075abd}} 
+Game\+Object {\bfseries God\+Mode\+Txt}
+\item 
+\mbox{\Hypertarget{class_player_a18162eb93f189f63f4999a8e5d036cba}\label{class_player_a18162eb93f189f63f4999a8e5d036cba}} 
+\mbox{\hyperlink{class_player_u_i}{Player\+UI}} {\bfseries canvas}
+\item 
+\mbox{\Hypertarget{class_player_aa23934b46ef31370157e93aa3faf3987}\label{class_player_aa23934b46ef31370157e93aa3faf3987}} 
+\mbox{\hyperlink{class_pop_up_controller}{Pop\+Up\+Controller}} {\bfseries God\+Mode\+Canvas}
+\item 
+\mbox{\Hypertarget{class_player_a8229da74698f680b469e82682e27c24f}\label{class_player_a8229da74698f680b469e82682e27c24f}} 
+float {\bfseries jump\+Velocity} = 10.\+0f
+\item 
+\mbox{\Hypertarget{class_player_aa6af4b3da92771996bee25588ab08bfb}\label{class_player_aa6af4b3da92771996bee25588ab08bfb}} 
+float {\bfseries invincibility\+Time} = 5f
+\item 
+\mbox{\Hypertarget{class_player_a4d7fdb8dab149c4a54bcf12559c3c99f}\label{class_player_a4d7fdb8dab149c4a54bcf12559c3c99f}} 
+float {\bfseries falling\+Gliding\+Speed}
+\item 
+\mbox{\Hypertarget{class_player_ae826387ef45106506d3ec736f205e723}\label{class_player_ae826387ef45106506d3ec736f205e723}} 
+float {\bfseries hovering\+Jump\+Velocity\+Divider}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Fake \mbox{\hyperlink{class_player}{Player}} fo testing  
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_a84646df880be590aaad80267a71cb154}\label{class_player_a84646df880be590aaad80267a71cb154}} 
+\index{Player@{Player}!AddObserver@{AddObserver}}
+\index{AddObserver@{AddObserver}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{AddObserver()}{AddObserver()}}
+{\footnotesize\ttfamily void Player.\+Add\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_player_a68c67e53c587f050f860771c2dce8064}\label{class_player_a68c67e53c587f050f860771c2dce8064}} 
+\index{Player@{Player}!NotifyObservers@{NotifyObservers}}
+\index{NotifyObservers@{NotifyObservers}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{NotifyObservers()}{NotifyObservers()}}
+{\footnotesize\ttfamily void Player.\+Notify\+Observers (\begin{DoxyParamCaption}\item[{Game\+Object}]{entity,  }\item[{\mbox{\hyperlink{namespace_x_d_script_a8ed3fb94d2513820eb47bcb39f486422}{E\+\_\+\+Event}}}]{event\+To\+Trigger }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+\mbox{\Hypertarget{class_player_ae3a84fe062760f3ac50e540225aaad0a}\label{class_player_ae3a84fe062760f3ac50e540225aaad0a}} 
+\index{Player@{Player}!RemoveObserver@{RemoveObserver}}
+\index{RemoveObserver@{RemoveObserver}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{RemoveObserver()}{RemoveObserver()}}
+{\footnotesize\ttfamily void Player.\+Remove\+Observer (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{class_x_d_script_1_1_abstract_observer}{Abstract\+Observer}}}]{observer }\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_x_d_script_1_1_i_subject}{XDScript.\+ISubject}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Cardiff Courses/\+Cardiff\+Game\+Repo/\+Caerdydd\+\_\+\+Project/\+Assets/\+Scripts/\+Singletons/Player.\+cs\end{DoxyCompactItemize}
