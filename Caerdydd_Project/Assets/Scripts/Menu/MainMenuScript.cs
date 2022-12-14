@@ -50,7 +50,14 @@ public class MainMenuScript : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        if (GetUnlockedLevels())
+        {
+            Level2();
+        }
+        else
+        {
+            Level1();
+        }
     }
 
     public void Quit()
