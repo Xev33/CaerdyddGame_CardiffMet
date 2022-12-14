@@ -1,29 +1,30 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+# Welcome to Caerdydd Game #
+This game is meant to be play with a gamepad, however using a keyboard is possible.
 
-### What is this repository for? ###
+This read me will teach you all the possible inputs and how to see the project's documentation
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Menu navigation ###
 
-### How do I get set up? ###
+* On the gamepad: use the four buttons onto the right side of your controller
+* On keyboard: Use the keyboard arrows
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Game controls ###
 
-### Contribution guidelines ###
+* Gamepad controller inputs:
+	* Move: left joystick
+	* Jump/Glide/Hover: The bottom button from the side of your controller (Xbox: A || Playstation: X)
+* Keyboard inputs:
+	* Move: A->left D-> right
+	* Jump/Glide/Hover: Space bar
+	
+### Code documentation ###
 
-* Writing tests
-* Code review
-* Other guidelines
+To see the entire code documentation:
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* just go to the following folder: ```Doxygen/html```
+* Search for a file named “index.html” 
+* Double click on it 
+* If asked: Select your internet navigator 
+* Done! You should now have all our class attributes and methods with some inheritance trees.
