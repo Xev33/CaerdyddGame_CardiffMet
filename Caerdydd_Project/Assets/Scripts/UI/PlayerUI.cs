@@ -69,10 +69,10 @@ public class PlayerUI : MonoBehaviour
 
         if (isLvlCmptOpen == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 1"))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 2"))
             {
                 StartCoroutine(CloseEverythingToLoad(nextlvlIndex, false));
-            } else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown("joystick button 2"))
+            } else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 1"))
             {
                 StartCoroutine(CloseEverythingToLoad(nextlvlIndex, true));
             }
@@ -87,11 +87,12 @@ public class PlayerUI : MonoBehaviour
 
         if (isGamePaused == true && isOnPauseCD == false)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1") || Input.GetKeyDown("joystick button 7"))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 1")
+                || Input.GetKeyDown("joystick button 7") || Input.GetKeyDown(KeyCode.Escape))
             {
                 StartCoroutine(ResumeGame());
             }
-            else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown("joystick button 2"))
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 2"))
             {
                 StartCoroutine(QuitLevel());
             }
@@ -313,3 +314,10 @@ public class PlayerUI : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }
+
+/* 
+    (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 3"))
+    (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 1"))
+    (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 2"))
+    (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown("joystick button 0"))
+}*/
